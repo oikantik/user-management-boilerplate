@@ -13,7 +13,7 @@ const RegisterForm = () => {
     <Form>
       <div className="reg-account">
         <div className="form-group">
-          <label for="name">Account</label>
+          <label>Account</label>
           <div className="reg-frm-icn">
             <input
               type="name"
@@ -60,7 +60,7 @@ const RegisterForm = () => {
 
         <div className="row date-name">
           <Col className="fnm">
-            <label for="date">Date of Birth</label>
+            <label>Date of Birth</label>
             <input
               type="date"
               className="form-control date"
@@ -71,7 +71,7 @@ const RegisterForm = () => {
           </Col>
           <Col className="lnm">
             <div className="form-group">
-              <label for="sel1">Gender</label>
+              <label>Gender</label>
               <select className="form-control" id="sel1">
                 <option>Male</option>
                 <option>Female</option>

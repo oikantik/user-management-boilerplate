@@ -2,12 +2,13 @@ import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   return (
     <Form>
       <div className="form-group">
-        <label for="email">EMAIL:</label>
+        <label>EMAIL:</label>
         <input
           type="email"
           className="form-control"
@@ -17,7 +18,7 @@ const LoginForm = () => {
         />
       </div>
       <div className="form-group">
-        <label for="pwd">PASSWORD:</label>
+        <label>PASSWORD:</label>
         <input
           type="password"
           className="form-control"
@@ -38,9 +39,7 @@ const LoginForm = () => {
           </label>
         </div>
         <div className="forgot">
-          <a href="href.html" title="">
-            Forgot Password ?
-          </a>
+          <Link to="">Forgot Password ?</Link>
         </div>
       </div>
 

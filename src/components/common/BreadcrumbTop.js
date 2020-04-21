@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,16 +15,12 @@ const BreadcrumbTop = () => {
                 size="lg"
                 style={{ marginRight: "10px" }}
               />
-              <a href="" title="">
-                Dashboard
-              </a>
+              <Link to="">Dashboard</Link>
               <FontAwesomeIcon
                 icon={faAngleRight}
                 style={{ marginLeft: "5px", marginRight: "5px" }}
               />
-              <a href="" title="">
-                App Page
-              </a>
+              <Link to="">App Page</Link>
             </p>
           </div>
         </div>

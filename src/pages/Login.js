@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import LoginForm from "../components/login/LoginForm";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -38,9 +39,7 @@ const Login = () => {
                   <LoginForm />
                   {/** form fields end */}
                   <div className="cre-acc">
-                    <a href="reg.html" title="">
-                      Create an account
-                    </a>
+                    <Link to="/register">Create an account</Link>
                   </div>
                 </div>
                 {/** Login form ends */}

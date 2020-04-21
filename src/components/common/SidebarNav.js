@@ -1,6 +1,7 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 import Logo from "../../images/LOGO.png";
+import { Link } from "react-router-dom";
 
 const SidebarNav = () => {
   return (
@@ -10,9 +11,9 @@ const SidebarNav = () => {
     >
       <div className="content-left-profile">
         <div className="left-profile-img">
-          <a href="somehere.html" title="">
+          <Link to="">
             <img src={Logo} alt="" className="img-fluid" />
-          </a>
+          </Link>
         </div>
         <div className="navbar navbar-expand-lg">
           {/** <!-- Toggler/collapsibe Button --> */}
@@ -32,9 +33,9 @@ const SidebarNav = () => {
           >
             <div className="nav-info">
               <div className="das-das">
-                <a href="" title="">
+                <Link to="">
                   <h5>Dashboard</h5>
-                </a>{" "}
+                </Link>{" "}
                 <br />
               </div>
               <div className="das-hr">
@@ -43,25 +44,25 @@ const SidebarNav = () => {
 
               <ul className="navbar-nav das-nav-ul">
                 <li className="nav-item">
-                  <a className="dropdown-item" href="index.html">
+                  <Link to="" className="dropdown-item">
                     Home
-                  </a>
+                  </Link>
                 </li>
 
                 <li className="nav-item">
-                  <a className="dropdown-item" href="members.html">
+                  <Link to="" className="dropdown-item">
                     Manage Members
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="dropdown-item" href="profile.html">
+                  <Link to="" className="dropdown-item">
                     My Profile
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="dropdown-item" href="login.html">
+                  <Link to="" className="dropdown-item">
                     Log Out
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

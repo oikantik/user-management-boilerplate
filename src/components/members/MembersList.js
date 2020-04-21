@@ -10,6 +10,7 @@ import {
   faPencilAlt,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const MembersList = () => {
   return (
@@ -44,9 +45,7 @@ const MembersList = () => {
               <p>
                 <FontAwesomeIcon icon={faHome} />
                 <span>/</span> Manage Members <span>/</span>{" "}
-                <a href="" title="">
-                  Members Data
-                </a>
+                <Link to="">Members Data</Link>
               </p>
             </div>
           </Col>
@@ -108,7 +107,7 @@ const MembersList = () => {
                           <th className="list-option-nm">
                             <p>Name</p>
                             <p className="updown">
-                              <a href="" title="">
+                              <Link to="">
                                 <FontAwesomeIcon
                                   icon={faLongArrowAltUp}
                                   style={{
@@ -116,8 +115,8 @@ const MembersList = () => {
                                     marginLeft: "2px",
                                   }}
                                 />
-                              </a>
-                              <a href="" title="">
+                              </Link>
+                              <Link to="">
                                 <FontAwesomeIcon
                                   icon={faLongArrowAltDown}
                                   style={{
@@ -125,14 +124,14 @@ const MembersList = () => {
                                     marginLeft: "2px",
                                   }}
                                 />
-                              </a>
+                              </Link>
                             </p>
                           </th>
 
                           <th className="list-option-ps">
                             <p>User Role</p>
                             <p className="updown">
-                              <a href="" title="">
+                              <Link to="">
                                 <FontAwesomeIcon
                                   icon={faLongArrowAltUp}
                                   style={{
@@ -140,8 +139,8 @@ const MembersList = () => {
                                     marginLeft: "2px",
                                   }}
                                 />
-                              </a>
-                              <a href="" title="">
+                              </Link>
+                              <Link to="">
                                 <FontAwesomeIcon
                                   icon={faLongArrowAltDown}
                                   style={{
@@ -149,7 +148,7 @@ const MembersList = () => {
                                     marginLeft: "2px",
                                   }}
                                 />
-                              </a>
+                              </Link>
                             </p>
                           </th>
 
@@ -167,12 +166,7 @@ const MembersList = () => {
                           <td>Airi Satou</td>
                           <td>Administrator</td>
                           <td className="icon">
-                            <a
-                              href=""
-                              title=""
-                              data-toggle="modal"
-                              data-target="#dataEdit"
-                            >
+                            <Link to="">
                               <FontAwesomeIcon
                                 icon={faPencilAlt}
                                 style={{
@@ -181,10 +175,10 @@ const MembersList = () => {
                                 }}
                               />
                               Edit
-                            </a>
+                            </Link>
                           </td>
                           <td className="icon">
-                            <a href="" title="">
+                            <Link to="">
                               <FontAwesomeIcon
                                 icon={faTimes}
                                 style={{
@@ -194,7 +188,7 @@ const MembersList = () => {
                                 }}
                               />
                               Delete
-                            </a>
+                            </Link>
                           </td>
                         </tr>
                       </tbody>
@@ -225,25 +219,25 @@ const MembersList = () => {
                     <div className="pagi-filter-src">
                       <ul className="pagination">
                         <li className="page-item">
-                          <a className="page-link" href="#">
+                          <Link to="" className="page-link">
                             Previous
-                          </a>
+                          </Link>
                         </li>
                         <li className="page-item">
-                          <a className="page-link" href="#">
+                          <Link to="" className="page-link">
                             1
-                          </a>
+                          </Link>
                         </li>
                         <li className="page-item">
-                          <a className="page-link" href="#">
+                          <Link to="" className="page-link" href="#">
                             2
-                          </a>
+                          </Link>
                         </li>
 
                         <li className="page-item">
-                          <a className="page-link" href="#">
+                          <Link to="" className="page-link" href="#">
                             Next
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>

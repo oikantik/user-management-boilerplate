@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -7,11 +8,7 @@ const Footer = () => {
       <Container fluid={true} className="footer-area-fld">
         <div className="footer-txt">
           <small>
-            Copyright © 2020 -{" "}
-            <a href="" title="">
-              Oqtave
-            </a>{" "}
-            - All Rights Reserved
+            Copyright © 2020 - <Link to="">Oqtave</Link> - All Rights Reserved
           </small>
         </div>
       </Container>

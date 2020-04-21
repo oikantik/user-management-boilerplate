@@ -893,10 +893,12 @@ input:-webkit-autofill::first-line {
 section.reg-frm {
   background: url(../src/images/sign-up.jpg) 0 0 no-repeat;
   background-size: cover;
+  height: 100vh;
 }
 
 .container-fluid.reg-frm-fld {
   background: rgba(0, 0, 0, 0.35);
+  height: 100vh;
 }
 
 .reg-frm-cl {
@@ -931,6 +933,7 @@ section.reg-frm {
 
 .reg-frm-icn {
   position: relative;
+  margin-right: 5px;
 }
 
 span.reg-frm-icn-on {
@@ -948,6 +951,7 @@ button.btn.btn-block.reg-btn-ftr {
   background: #009587;
   padding: 10px;
   color: #fff;
+  border: none;
 }
 
 i.fa.fa-sign-in.regic {
@@ -974,6 +978,7 @@ i.fa.fa-sign-in.regic {
   text-decoration: none;
   background-color: transparent;
 }
+
 
 /*------Tab-reg------*/
 
@@ -1387,15 +1392,13 @@ ul.pagination {
 ===================1400=========================
 */
 
-@media (min-width: 1400px) {
-}
+@media (min-width: 1400px) {}
 
 /*
 ===================1200-1399=========================
 */
 
-@media (min-width: 1200px) and (max-width: 1400px) {
-}
+@media (min-width: 1200px) and (max-width: 1400px) {}
 
 /*
 @media(min-width: 1200px){
@@ -1839,6 +1842,7 @@ ul.pagination {
   .members-data-cl {
     padding-right: 0px !important;
     padding-left: 0px !important;
+    min-height: 100vh !important;
   }
 
   .members-data-all {
@@ -1945,6 +1949,7 @@ ul.pagination {
 */
 
 @media (min-width: 320px) and (max-width: 479px) {
+
   p,
   h1,
   h2,
@@ -2324,6 +2329,7 @@ ul.pagination {
 */
 
 @media (max-width: 319px) {
+
   p,
   h1,
   h2,

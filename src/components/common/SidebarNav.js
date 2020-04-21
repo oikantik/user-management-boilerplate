@@ -47,19 +47,17 @@ const SidebarNav = () => {
                     Home
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="dropdown-item" href="profile.html">
-                    Profile
-                  </a>
-                </li>
+
                 <li className="nav-item">
                   <a className="dropdown-item" href="members.html">
                     Manage Members
                   </a>
                 </li>
-                <a className="dropdown-item" href="accountSettings.html">
-                  Account Settings
-                </a>
+                <li className="nav-item">
+                  <a className="dropdown-item" href="profile.html">
+                    My Profile
+                  </a>
+                </li>
                 <li className="nav-item">
                   <a className="dropdown-item" href="login.html">
                     Log Out

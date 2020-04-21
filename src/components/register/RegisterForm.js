@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSignInAlt,
@@ -59,7 +59,7 @@ const RegisterForm = () => {
         </div>
 
         <div className="row date-name">
-          <div className="col fnm">
+          <Col className="fnm">
             <label for="date">Date of Birth</label>
             <input
               type="date"
@@ -68,8 +68,8 @@ const RegisterForm = () => {
               placeholder=""
               name="name"
             />
-          </div>
-          <div className="col lnm">
+          </Col>
+          <Col className="lnm">
             <div className="form-group">
               <label for="sel1">Gender</label>
               <select className="form-control" id="sel1">
@@ -78,7 +78,7 @@ const RegisterForm = () => {
                 <option>Other</option>
               </select>
             </div>
-          </div>
+          </Col>
         </div>
       </div>
 

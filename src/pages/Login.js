@@ -11,7 +11,10 @@ const Login = () => {
       <Container fluid={true} className="login-frm-fld">
         <Container className="login-frm-cntr">
           <Row className="login-frm-rw">
-            <Col xl={4} className="login-frm-cl">
+            <Col
+              xl={4}
+              className="col-lg-5 col-md-7 col-sm-9 col-12 login-frm-cl"
+            >
               <div className="login-frm-info">
                 {/** Login form header starts **/}
                 <div className="login-frm-hd">

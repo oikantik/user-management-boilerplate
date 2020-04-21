@@ -1,40 +1,68 @@
 import React from "react";
+import { Row, Col } from "react-bootstrap";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faThList,
+  faHome,
+  faLongArrowAltUp,
+  faLongArrowAltDown,
+  faPencilAlt,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 const MembersList = () => {
   return (
-    <div className="row main-board members-info-area">
-      <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 main-board-cl-left members-info-area-cl">
-        <div className="row members-info-area-cl-rw">
-          <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 members-info-cl">
+    <Row className="main-board members-info-area">
+      <Col
+        xl={12}
+        className="col-lg-12 col-md-12 col-sm-12 col-12 main-board-cl-left members-info-area-cl"
+      >
+        <Row className="members-info-area-cl-rw">
+          <Col
+            xl={6}
+            className="col-lg-6 col-md-6 col-sm-12 col-12 members-info-cl"
+          >
             <div className="members-left-txt">
               <h4>
-                <span>
-                  <i className="fa fa-th-list"></i>
-                </span>
+                <FontAwesomeIcon
+                  size="sm"
+                  icon={faThList}
+                  style={{ marginRight: "10px" }}
+                />
                 Members Data
               </h4>
               <p>Table to display analytical data effectively Tables</p>
             </div>
-          </div>
+          </Col>
 
-          <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 members-info-cl">
+          <Col
+            xl={6}
+            className="col-lg-6 col-md-6 col-sm-12 col-12 members-info-cl"
+          >
             <div className="members-right-txt">
               <p>
-                <i className="fa fa-home"></i>
+                <FontAwesomeIcon icon={faHome} />
                 <span>/</span> Manage Members <span>/</span>{" "}
                 <a href="" title="">
                   Members Data
                 </a>
               </p>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
 
-        <div className="row members-data-rw ">
-          <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 members-data-cl">
+        <Row className="members-data-rw ">
+          <Col
+            xl={12}
+            className="col-lg-12 col-md-12 col-sm-12 col-12 members-data-cl"
+          >
             <div className="members-data-all">
-              <div className="row members-data-rw-up ">
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 members-data-cl-hd-lft">
+              <Row className="members-data-rw-up ">
+                <Col
+                  xl={6}
+                  className="col-lg-6 col-md-6 col-sm-12 col-12 members-data-cl-hd-lft"
+                >
                   <div className="members-data-hd-lft">
                     <div className="show-list">
                       <span>Show</span>
@@ -47,9 +75,12 @@ const MembersList = () => {
                       <span>entries</span>
                     </div>
                   </div>
-                </div>
+                </Col>
 
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 members-data-cl-hd-rt">
+                <Col
+                  xl={6}
+                  className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 members-data-cl-hd-rt"
+                >
                   <div className="members-data-hd-rt">
                     <div className="members-filter-src">
                       <input
@@ -60,13 +91,16 @@ const MembersList = () => {
                       />
                     </div>
                   </div>
-                </div>
-              </div>
+                </Col>
+              </Row>
 
               {/** <!--Table--> */}
 
-              <div className="row members-table-rw">
-                <div className="col-xl-12 col-lg-12 col-md12 col-sm-12 col-12 members-table-cl">
+              <Row className="members-table-rw">
+                <Col
+                  xl={12}
+                  className="col-lg-12 col-md12 col-sm-12 col-12 members-table-cl"
+                >
                   <div className="members-table">
                     <table className="table table-bordered">
                       <thead>
@@ -75,67 +109,63 @@ const MembersList = () => {
                             <p>Name</p>
                             <p className="updown">
                               <a href="" title="">
-                                <i className="fa fa-long-arrow-up"></i>
+                                <FontAwesomeIcon
+                                  icon={faLongArrowAltUp}
+                                  style={{
+                                    marginRight: "2px",
+                                    marginLeft: "2px",
+                                  }}
+                                />
                               </a>
                               <a href="" title="">
-                                <i className="fa fa-long-arrow-down"></i>
+                                <FontAwesomeIcon
+                                  icon={faLongArrowAltDown}
+                                  style={{
+                                    marginRight: "2px",
+                                    marginLeft: "2px",
+                                  }}
+                                />
                               </a>
                             </p>
                           </th>
 
                           <th className="list-option-ps">
-                            <p>Position</p>
+                            <p>User Role</p>
                             <p className="updown">
                               <a href="" title="">
-                                <i className="fa fa-long-arrow-up"></i>
+                                <FontAwesomeIcon
+                                  icon={faLongArrowAltUp}
+                                  style={{
+                                    marginRight: "2px",
+                                    marginLeft: "2px",
+                                  }}
+                                />
                               </a>
                               <a href="" title="">
-                                <i className="fa fa-long-arrow-down"></i>
+                                <FontAwesomeIcon
+                                  icon={faLongArrowAltDown}
+                                  style={{
+                                    marginRight: "2px",
+                                    marginLeft: "2px",
+                                  }}
+                                />
                               </a>
                             </p>
                           </th>
 
                           <th className="list-option-ed">
                             <p>Edit</p>
-                            <p className="updown">
-                              <a href="" title="">
-                                <i className="fa fa-long-arrow-up"></i>
-                              </a>
-                              <a href="" title="">
-                                <i className="fa fa-long-arrow-down"></i>
-                              </a>
-                            </p>
-                          </th>
-
-                          <th className="list-option-vi">
-                            <p>View</p>
-                            <p className="updown">
-                              <a href="" title="">
-                                <i className="fa fa-long-arrow-up"></i>
-                              </a>
-                              <a href="" title="">
-                                <i className="fa fa-long-arrow-down"></i>
-                              </a>
-                            </p>
                           </th>
 
                           <th className="list-option-de">
                             <p>Delete</p>
-                            <p className="updown">
-                              <a href="" title="">
-                                <i className="fa fa-long-arrow-up"></i>
-                              </a>
-                              <a href="" title="">
-                                <i className="fa fa-long-arrow-down"></i>
-                              </a>
-                            </p>
                           </th>
                         </tr>
                       </thead>
                       <tbody id="myTable" className="mytable">
                         <tr>
                           <td>Airi Satou</td>
-                          <td>Accountant</td>
+                          <td>Administrator</td>
                           <td className="icon">
                             <a
                               href=""
@@ -143,30 +173,26 @@ const MembersList = () => {
                               data-toggle="modal"
                               data-target="#dataEdit"
                             >
-                              <span>
-                                <i className="fa fa-pencil"></i>
-                              </span>
+                              <FontAwesomeIcon
+                                icon={faPencilAlt}
+                                style={{
+                                  marginRight: "10px",
+                                  marginLeft: "2px",
+                                }}
+                              />
                               Edit
                             </a>
                           </td>
                           <td className="icon">
-                            <a
-                              href=""
-                              title=""
-                              data-toggle="modal"
-                              data-target="#dataView"
-                            >
-                              <span>
-                                <i className="fa fa-eye"></i>
-                              </span>
-                              View
-                            </a>
-                          </td>
-                          <td className="icon">
                             <a href="" title="">
-                              <span>
-                                <i className="fa fa-times"></i>
-                              </span>
+                              <FontAwesomeIcon
+                                icon={faTimes}
+                                style={{
+                                  marginRight: "10px",
+                                  marginLeft: "2px",
+                                  color: "red",
+                                }}
+                              />
                               Delete
                             </a>
                           </td>
@@ -174,21 +200,27 @@ const MembersList = () => {
                       </tbody>
                     </table>
                   </div>
-                </div>
-              </div>
+                </Col>
+              </Row>
 
               {/** <!--Pagination-->  */}
 
-              <div className="row pagi-data-rw-up ">
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pagi-data-cl-hd-lft">
+              <Row className="pagi-data-rw-up ">
+                <Col
+                  xl={6}
+                  className="col-lg-6 col-md-6 col-sm-12 col-12 pagi-data-cl-hd-lft"
+                >
                   <div className="pagi-data-hd-lft">
                     <div className="show-list-pagi">
                       <span>Showing 1 to 10 of 57 entries</span>
                     </div>
                   </div>
-                </div>
+                </Col>
 
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pagi-data-cl-hd-rt">
+                <Col
+                  xl={6}
+                  className="col-lg-6 col-md-6 col-sm-12 col-12 pagi-data-cl-hd-rt"
+                >
                   <div className="pagi-data-hd-rt">
                     <div className="pagi-filter-src">
                       <ul className="pagination">
@@ -216,13 +248,13 @@ const MembersList = () => {
                       </ul>
                     </div>
                   </div>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
   );
 };
 

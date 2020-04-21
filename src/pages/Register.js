@@ -10,7 +10,10 @@ const Register = () => {
       <Container fluid={true} className="reg-frm-fld">
         <Container className="reg-frm-cntr">
           <Row className="row reg-frm-rw">
-            <Col xl={6} className="reg-frm-cl">
+            <Col
+              xl={6}
+              className="col-lg-7 col-md-9 col-sm-11 col-12 reg-frm-cl"
+            >
               <div className="reg-frm-info">
                 {/** Registration header starts */}
                 <div className="reg-frm-hd">

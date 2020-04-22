@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { registerUser } from "../../redux/actions/register";
 import { Form, Button, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,9 +10,9 @@ import {
   faKey,
 } from "@fortawesome/free-solid-svg-icons";
 
-const RegisterForm = () => {
+const RegisterForm = ({ handleRegister }) => {
   return (
-    <Form>
+    <Form onSubmit={handleRegister}>
       <div className="reg-account">
         <div className="form-group">
           <label>Account</label>
@@ -66,13 +68,13 @@ const RegisterForm = () => {
               className="form-control date"
               id="dt"
               placeholder=""
-              name="name"
+              name="dob"
             />
           </Col>
           <Col className="lnm">
             <div className="form-group">
               <label>Gender</label>
-              <select className="form-control" id="sel1">
+              <select className="form-control" id="sel1" name="gender">
                 <option>Male</option>
                 <option>Female</option>
                 <option>Other</option>
@@ -90,4 +92,19 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleRegister: (e) => {
+      e.preventDefault();
+      const payload = {
+        name: e.target.fullname.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        dob: e.target.dob.value,
+        gender: e.target.gender.value,
+      };
+      dispatch(registerUser(payload));
+    },
+  };
+};
+export default connect(null, mapDispatchToProps)(RegisterForm);

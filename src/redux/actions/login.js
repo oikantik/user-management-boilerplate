@@ -6,3 +6,9 @@ export const loginUser = (payload) => {
     payload: payload,
   };
 };
+
+export const resetLogin = () => {
+  return {
+    type: types.RESET_USER_LOGIN,
+  };
+};

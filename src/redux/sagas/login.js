@@ -7,7 +7,10 @@ function* loginUser(action) {
     const payload = yield call(login, action.payload);
     yield put({ type: types.USER_LOGIN_SUCCESS, payload });
   } catch (err) {
-    yield put({ type: types.USER_LOGIN_FAILURE, err });
+    yield put({
+      type: types.USER_LOGIN_FAILURE,
+      payload: err.response.data,
+    });
   }
 }
 

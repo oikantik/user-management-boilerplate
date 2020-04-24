@@ -9,6 +9,8 @@ export default async (payload) => {
     },
   });
   return {
-    id: response.data.id,
+    success: response.data.success,
+    message: response.data.message,
+    id: response.data.payload.id,
   };
 };

@@ -1,9 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import RegisterForm from "../components/register/RegisterForm";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -25,15 +22,6 @@ const Register = () => {
                   {/** Registration form starts */}
                   <RegisterForm />
                   {/** Registration form ends */}
-                  <div className="rec-log">
-                    <Link to="/">
-                      <FontAwesomeIcon
-                        icon={faSignInAlt}
-                        className="reg-frm-icn"
-                      />{" "}
-                      SIGN IN
-                    </Link>
-                  </div>
                 </div>
               </div>
             </Col>

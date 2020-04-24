@@ -6,3 +6,9 @@ export const registerUser = (payload) => {
     payload: payload,
   };
 };
+
+export const resetRegister = () => {
+  return {
+    type: types.RESET_USER_REGISTER,
+  };
+};

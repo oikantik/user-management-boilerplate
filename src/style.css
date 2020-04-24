@@ -21,6 +21,14 @@ h6 {
   font-family: "Ubuntu", sans-serif;
 }
 
+/*----------validation-errors---------*/
+
+.validation-errors {
+  font-size: small;
+  color: #9b0f0f;
+  margin-bottom: 10px;
+}
+
 /*----------loading-icon---------*/
 
 .loading-icn {
@@ -33,36 +41,36 @@ h6 {
 @keyframes ldio-yytmiul8dm-o {
   0% {
     opacity: 1;
-    transform: translate(0 0)
+    transform: translate(0 0);
   }
 
   49.99% {
     opacity: 1;
-    transform: translate(15px, 0)
+    transform: translate(15px, 0);
   }
 
   50% {
     opacity: 0;
-    transform: translate(15px, 0)
+    transform: translate(15px, 0);
   }
 
   100% {
     opacity: 0;
-    transform: translate(0, 0)
+    transform: translate(0, 0);
   }
 }
 
 @keyframes ldio-yytmiul8dm {
   0% {
-    transform: translate(0, 0)
+    transform: translate(0, 0);
   }
 
   50% {
-    transform: translate(15px, 0)
+    transform: translate(15px, 0);
   }
 
   100% {
-    transform: translate(0, 0)
+    transform: translate(0, 0);
   }
 }
 
@@ -1075,7 +1083,6 @@ i.fa.fa-sign-in.regic {
   background-color: transparent;
 }
 
-
 /*------Tab-reg------*/
 
 ul.nav.nav-tabs.reg-pay-ul {
@@ -1488,13 +1495,15 @@ ul.pagination {
 ===================1400=========================
 */
 
-@media (min-width: 1400px) {}
+@media (min-width: 1400px) {
+}
 
 /*
 ===================1200-1399=========================
 */
 
-@media (min-width: 1200px) and (max-width: 1400px) {}
+@media (min-width: 1200px) and (max-width: 1400px) {
+}
 
 /*
 @media(min-width: 1200px){
@@ -2045,7 +2054,6 @@ ul.pagination {
 */
 
 @media (min-width: 320px) and (max-width: 479px) {
-
   p,
   h1,
   h2,
@@ -2425,7 +2433,6 @@ ul.pagination {
 */
 
 @media (max-width: 319px) {
-
   p,
   h1,
   h2,

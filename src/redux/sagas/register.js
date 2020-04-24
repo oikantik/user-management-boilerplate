@@ -4,10 +4,10 @@ import register from "../middleware/register";
 
 function* registerUser(action) {
   try {
-    const data = yield call(register, action.payload);
-    yield put({ type: types.USER_REGISTER_SUCCESS, data });
+    const payload = yield call(register, action.payload);
+    yield put({ type: types.USER_REGISTER_SUCCESS, payload });
   } catch (err) {
-    yield put({ type: types.USER_REGISTER_FAILURE, err });
+    yield put({ type: types.USER_REGISTER_FAILURE, payload: err });
   }
 }
 

@@ -3,10 +3,12 @@ import { Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { loginUser } from "../../redux/actions/login";
 
-const LoginForm = () => {
+const LoginForm = ({ handleLogin }) => {
   return (
-    <Form>
+    <Form onSubmit={handleLogin}>
       <div className="form-group">
         <label>EMAIL:</label>
         <input
@@ -24,7 +26,7 @@ const LoginForm = () => {
           className="form-control"
           id="pwd"
           placeholder="Enter password"
-          name="pswd"
+          name="password"
         />
       </div>
       <div className="remember-forgot">
@@ -51,4 +53,17 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleLogin: (e) => {
+      e.preventDefault();
+      const payload = {
+        email: e.target.email.value,
+        password: e.target.password.value,
+      };
+      dispatch(loginUser(payload));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginForm);

@@ -1,3 +1,4 @@
 {
-  "registerUserURI": "http://localhost:5000/register"
+  "registerUserURI": "http://localhost:5000/register",
+  "loginUserURI": "http://localhost:5000/login"
 }

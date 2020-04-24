@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { registerUser } from "../../redux/actions/register";
 import { Form, Button, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,7 +9,10 @@ import {
   faKey,
 } from "@fortawesome/free-solid-svg-icons";
 
-const RegisterForm = ({ handleRegister }) => {
+import { registerUser } from "../../redux/actions/register";
+import Loading from "../common/Loading";
+
+const RegisterForm = ({ handleRegister, loading }) => {
   return (
     <Form onSubmit={handleRegister}>
       <div className="reg-account">
@@ -88,6 +90,7 @@ const RegisterForm = ({ handleRegister }) => {
         <FontAwesomeIcon icon={faSignInAlt} className="reg-frm-icn" />
         REGISTER
       </Button>
+      <Loading show={loading} />
     </Form>
   );
 };
@@ -107,4 +110,11 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(null, mapDispatchToProps)(RegisterForm);
+
+const mapStateToProps = (state) => {
+  return {
+    success: state.register.success,
+    loading: state.register.loading,
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

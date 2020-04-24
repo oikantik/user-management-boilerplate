@@ -7,7 +7,10 @@ function* registerUser(action) {
     const payload = yield call(register, action.payload);
     yield put({ type: types.USER_REGISTER_SUCCESS, payload });
   } catch (err) {
-    yield put({ type: types.USER_REGISTER_FAILURE, payload: err });
+    yield put({
+      type: types.USER_REGISTER_FAILURE,
+      payload: err.response.data,
+    });
   }
 }
 

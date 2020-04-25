@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Form, Button, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -30,7 +30,7 @@ const validationSchema = Yup.object({
     .required("Please enter gender"),
 });
 
-const RegisterForm = ({ handleRegister, loading, success, error }) => {
+const RegisterForm = ({ handleRegister, loading, success, error, isAuth }) => {
   return (
     <Fragment>
       {error !== "" && (
@@ -40,6 +40,7 @@ const RegisterForm = ({ handleRegister, loading, success, error }) => {
           error={error}
         />
       )}
+      {isAuth && <Redirect to="/members" />}
       {success && (
         <Success FontAwesomeIcon={FontAwesomeIcon} icon={faSignInAlt} />
       )}
@@ -190,6 +191,7 @@ const mapStateToProps = (state) => {
     success: state.register.success,
     loading: state.register.loading,
     error: state.register.error,
+    isAuth: localStorage.getItem("token") ? true : false,
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

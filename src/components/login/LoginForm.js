@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
     .email("Please enter a valid email"),
 });
 
-const LoginForm = ({ handleLogin, success, error, loading }) => {
+const LoginForm = ({ handleLogin, success, error, loading, isAuth }) => {
   return (
     <Fragment>
       {error !== "" && (
@@ -28,8 +28,8 @@ const LoginForm = ({ handleLogin, success, error, loading }) => {
           error={error}
         />
       )}
-      {success && <Redirect to="/members" />}
-      {!success && error === "" && (
+      {isAuth && <Redirect to="/members" />}
+      {!isAuth && error === "" && (
         <Fragment>
           <Formik
             validationSchema={validationSchema}
@@ -113,6 +113,7 @@ const mapStateToProps = (state) => {
     success: state.login.success,
     loading: state.login.loading,
     error: state.login.error,
+    isAuth: localStorage.getItem("token") ? true : false,
   };
 };
 

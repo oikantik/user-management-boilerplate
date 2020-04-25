@@ -11,6 +11,6 @@ export default async (payload) => {
   return {
     success: response.data.success,
     message: response.data.message,
-    id: response.data.payload.id,
+    token: response.data.token,
   };
 };

@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   success: false,
   error: "",
+  token: "",
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +18,7 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         success: action.payload.success,
+        token: action.payload.token,
         error: "",
       };
     case types.USER_LOGIN_FAILURE:

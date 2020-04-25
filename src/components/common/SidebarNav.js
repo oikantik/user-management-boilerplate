@@ -4,6 +4,10 @@ import Logo from "../../images/LOGO.png";
 import { Link } from "react-router-dom";
 
 const SidebarNav = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    return false;
+  };
   return (
     <Col
       xl={2}
@@ -60,7 +64,7 @@ const SidebarNav = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="" className="dropdown-item">
+                  <Link to="/" className="dropdown-item" onClick={handleLogout}>
                     Log Out
                   </Link>
                 </li>

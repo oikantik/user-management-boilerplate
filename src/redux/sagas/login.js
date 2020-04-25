@@ -5,6 +5,7 @@ import login from "../middleware/login";
 function* loginUser(action) {
   try {
     const payload = yield call(login, action.payload);
+    localStorage.setItem("token", payload.token);
     yield put({ type: types.USER_LOGIN_SUCCESS, payload });
   } catch (err) {
     yield put({

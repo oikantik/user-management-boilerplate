@@ -6,21 +6,22 @@ import "./style.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Members from "./pages/Members";
+import PrivateRoute from "./components/common/PrivateRoute";
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/members">
-            <Members />
-          </Route>
-          <Route path="">
+          <Route exact path="/">
             <Login />
           </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <PrivateRoute exact path="/members">
+            <Members />
+          </PrivateRoute>
         </Switch>
       </Router>
     </Provider>

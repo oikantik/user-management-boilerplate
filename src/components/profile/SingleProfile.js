@@ -1,12 +1,18 @@
 import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 
-import { getMyProfile } from "../../redux/actions/profile";
+import {
+  getMyProfile,
+  loadEditProfile,
+  loadViewProfile,
+} from "../../redux/actions/profile";
 import UpdateSingleProfile from "./UpdateSingleProfile";
 import ViewProfile from "./ViewProfile";
 
 const SingleProfile = ({
   handleGetMyProfile,
+  handleLoadEditProfile,
+  handleLoadViewProfile,
   name,
   email,
   dob,
@@ -16,13 +22,15 @@ const SingleProfile = ({
   phone,
   website,
   userRole,
+  viewProfile,
+  editProfile,
 }) => {
   useEffect(() => {
     handleGetMyProfile();
   }, [handleGetMyProfile]);
   return (
     <Fragment>
-      {false ? (
+      {viewProfile ? (
         <ViewProfile
           name={name}
           email={email}
@@ -33,6 +41,7 @@ const SingleProfile = ({
           phone={phone}
           website={website}
           userRole={userRole}
+          handleLoadEditProfile={handleLoadEditProfile}
         />
       ) : (
         <UpdateSingleProfile
@@ -45,6 +54,8 @@ const SingleProfile = ({
           phone={phone}
           website={website}
           userRole={userRole}
+          editProfile={editProfile}
+          handleLoadViewProfile={handleLoadViewProfile}
         />
       )}
     </Fragment>
@@ -55,6 +66,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleGetMyProfile: () => {
       dispatch(getMyProfile());
+    },
+    handleLoadEditProfile: () => {
+      dispatch(loadEditProfile());
+    },
+    handleLoadViewProfile: (e) => {
+      e.preventDefault();
+      dispatch(loadViewProfile());
+      return false;
     },
   };
 };
@@ -70,6 +89,8 @@ const mapStateToProps = (state) => {
     phone,
     website,
     userRole,
+    viewProfile,
+    editProfile,
   } = state.profile;
   return {
     name,
@@ -81,6 +102,8 @@ const mapStateToProps = (state) => {
     phone,
     website,
     userRole,
+    viewProfile,
+    editProfile,
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProfile);

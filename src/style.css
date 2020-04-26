@@ -1167,7 +1167,8 @@ lable.pay-hd {
 
 .main-board-cl-left.profile-info-area-cl {
   border-right: none;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
 }
 
 .profile-info-area-txt {
@@ -1491,13 +1492,15 @@ ul.pagination {
 ===================1400=========================
 */
 
-@media (min-width: 1400px) {}
+@media (min-width: 1400px) {
+}
 
 /*
 ===================1200-1399=========================
 */
 
-@media (min-width: 1200px) and (max-width: 1400px) {}
+@media (min-width: 1200px) and (max-width: 1400px) {
+}
 
 /*
 @media(min-width: 1200px){
@@ -2048,7 +2051,6 @@ ul.pagination {
 */
 
 @media (min-width: 320px) and (max-width: 479px) {
-
   p,
   h1,
   h2,
@@ -2428,7 +2430,6 @@ ul.pagination {
 */
 
 @media (max-width: 319px) {
-
   p,
   h1,
   h2,

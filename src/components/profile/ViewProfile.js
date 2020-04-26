@@ -3,6 +3,7 @@ import { Col, Row, Button } from "react-bootstrap";
 import temporaryAvatar from "../../images/male-avatar1.png";
 
 const ViewProfile = ({
+  handleLoadEditProfile,
   name,
   email,
   dob,
@@ -143,7 +144,11 @@ const ViewProfile = ({
                   </div>
                 </Col>
               </Row>
-              <Button variant="primary" style={{ float: "right" }}>
+              <Button
+                variant="primary"
+                style={{ float: "right" }}
+                onClick={handleLoadEditProfile}
+              >
                 Edit Profile
               </Button>
             </div>

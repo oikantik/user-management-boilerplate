@@ -5,3 +5,15 @@ export const getMyProfile = () => {
     type: types.GET_MY_PROFILE,
   };
 };
+
+export const loadEditProfile = () => {
+  return {
+    type: types.LOAD_EDIT_PROFILE,
+  };
+};
+
+export const loadViewProfile = () => {
+  return {
+    type: types.LOAD_VIEW_PROFILE,
+  };
+};

@@ -13,6 +13,8 @@ const initialState = {
   phone: "",
   website: "",
   userRole: "",
+  editProfile: false,
+  viewProfile: true,
 };
 
 export default (state = initialState, action) => {
@@ -52,6 +54,18 @@ export default (state = initialState, action) => {
         loading: false,
         success: action.payload.success,
         error: action.payload.message,
+      };
+    case types.LOAD_EDIT_PROFILE:
+      return {
+        ...state,
+        viewProfile: false,
+        editProfile: true,
+      };
+    case types.LOAD_VIEW_PROFILE:
+      return {
+        ...state,
+        viewProfile: true,
+        editProfile: false,
       };
     default:
       return state;

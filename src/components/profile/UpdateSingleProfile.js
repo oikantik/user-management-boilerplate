@@ -5,8 +5,10 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const validationSchema = Yup.object({
-  fullName: Yup.string().required("Please enter name field"),
+  name: Yup.string().required("Please enter name field"),
   dob: Yup.date().required("Please enter your date of birth"),
   gender: Yup.string()
     .oneOf(["Male", "Female", "Other"], "Invalid Gender")
@@ -14,6 +16,14 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .required("Please enter your email address")
     .email("Please enter a valid email"),
+  userRole: Yup.string().oneOf(
+    ["", "Super Administrator", "Administrator", "Coordinator", "Staff"],
+    "Invalid User Role"
+  ),
+  phone: Yup.string().matches(phoneRegExp, "Phone number is not valid"),
+  address: Yup.string(),
+  website: Yup.string(),
+  aboutMe: Yup.string(),
 });
 
 const UpdateSingleProfile = ({
@@ -26,6 +36,7 @@ const UpdateSingleProfile = ({
   phone,
   website,
   userRole,
+  handleLoadViewProfile,
 }) => {
   return (
     <Fragment>
@@ -41,23 +52,52 @@ const UpdateSingleProfile = ({
             >
               <div className="pro-info-text">
                 <Formik
+                  enableReinitialize={true}
                   validationSchema={validationSchema}
                   onSubmit={() => console.log("form submitted")}
-                  initialValues={{ fullName: name, email, gender }}
+                  initialValues={{
+                    name,
+                    email,
+                    dob,
+                    gender,
+                    aboutMe,
+                    address,
+                    phone,
+                    website,
+                    userRole,
+                  }}
                 >
-                  {({ handleSubmit, handleChange, errors }) => (
+                  {({ handleSubmit, handleChange, errors, values }) => (
                     <Form onSubmit={handleSubmit}>
+                      <Form.Group>
+                        <Form.Label>User Role</Form.Label>
+                        <Form.Control
+                          as="select"
+                          name="userRole"
+                          onChange={handleChange}
+                          value={values.userRole}
+                        >
+                          <option value="">--</option>
+                          <option value="Super Administrator">
+                            Super Administrator
+                          </option>
+                          <option value="Administrator">Administrator</option>
+                          <option value="Coordinator">Coordinator</option>
+                          <option value="Staff">Staff</option>
+                        </Form.Control>
+                        <span className="validation-errors">
+                          {errors.userRole}
+                        </span>
+                      </Form.Group>
                       <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                           type="name"
                           name="fullName"
                           onChange={handleChange}
-                          value={name}
+                          value={values.name}
                         />
-                        <span className="validation-errors">
-                          {errors.fullName}
-                        </span>
+                        <span className="validation-errors">{errors.name}</span>
                       </Form.Group>
                       <Form.Group>
                         <Form.Label>Email address</Form.Label>
@@ -65,7 +105,7 @@ const UpdateSingleProfile = ({
                           type="email"
                           name="email"
                           onChange={handleChange}
-                          value={email}
+                          value={values.email}
                         />
                         <span className="validation-errors">
                           {errors.email}
@@ -77,7 +117,7 @@ const UpdateSingleProfile = ({
                           type="date"
                           name="dob"
                           onChange={handleChange}
-                          value={dob}
+                          value={values.dob}
                         />
                         <span className="validation-errors">{errors.dob}</span>
                       </Form.Group>
@@ -87,7 +127,7 @@ const UpdateSingleProfile = ({
                           as="select"
                           name="gender"
                           onChange={handleChange}
-                          value={gender}
+                          value={values.gender}
                         >
                           <option value="--">--</option>
                           <option value="Male">Male</option>
@@ -98,6 +138,57 @@ const UpdateSingleProfile = ({
                           {errors.gender}
                         </span>
                       </Form.Group>
+
+                      <Form.Group>
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="address"
+                          onChange={handleChange}
+                          value={values.address}
+                        />
+                        <span className="validation-errors">
+                          {errors.address}
+                        </span>
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="phone"
+                          onChange={handleChange}
+                          value={values.phone}
+                        />
+                        <span className="validation-errors">
+                          {errors.phone}
+                        </span>
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Label>Website</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="website"
+                          onChange={handleChange}
+                          value={values.website}
+                        />
+                        <span className="validation-errors">
+                          {errors.website}
+                        </span>
+                      </Form.Group>
+
+                      <Form.Group>
+                        <Form.Label>About Me</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          rows="3"
+                          name="aboutMe"
+                          value={values.aboutMe}
+                          onChange={handleChange}
+                        />
+                        <span className="validation-errors">
+                          {errors.aboutMe}
+                        </span>
+                      </Form.Group>
                       <Button type="submit" className="btn-block reg-btn-ftr">
                         Update Profile
                       </Button>
@@ -105,7 +196,9 @@ const UpdateSingleProfile = ({
                   )}
                 </Formik>
                 <div style={{ textAlign: "center", padding: "10px" }}>
-                  <Link to="">Go Back</Link>
+                  <Link to="" onClick={handleLoadViewProfile}>
+                    Go Back
+                  </Link>
                 </div>
               </div>
             </Col>

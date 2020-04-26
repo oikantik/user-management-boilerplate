@@ -3,10 +3,11 @@ import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThList } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import MembersTable from "./MembersTable";
 
-const MembersList = () => {
+const MembersList = ({ count }) => {
   return (
     <Row className="main-board members-info-area">
       <Col
@@ -79,7 +80,7 @@ const MembersList = () => {
                 >
                   <div className="pagi-data-hd-lft">
                     <div className="show-list-pagi">
-                      <span>Showing 1 to 10 of 57 entries</span>
+                      <span>Showing 1 to 10 of {count} entries</span>
                     </div>
                   </div>
                 </Col>
@@ -125,4 +126,10 @@ const MembersList = () => {
   );
 };
 
-export default MembersList;
+const mapStateToProps = (state) => {
+  return {
+    count: state.members.count,
+  };
+};
+
+export default connect(mapStateToProps)(MembersList);

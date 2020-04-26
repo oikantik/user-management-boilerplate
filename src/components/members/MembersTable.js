@@ -90,7 +90,7 @@ const MembersTable = ({ handleGetMembersList, list, count }) => {
                 <tbody id="myTable" className="mytable" key={uuidv4()}>
                   <tr>
                     <td>{member.name}</td>
-                    <td>Administrator</td>
+                    <td>{member.userRole}</td>
                     <td className="icon">
                       <Link to="">
                         <FontAwesomeIcon

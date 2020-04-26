@@ -144,10 +144,12 @@ const ViewProfile = ({
                   </div>
                 </Col>
               </Row>
+
               <Button
                 variant="primary"
                 style={{ float: "right" }}
                 onClick={handleLoadEditProfile}
+                className="btn-block reg-btn-ftr"
               >
                 Edit Profile
               </Button>

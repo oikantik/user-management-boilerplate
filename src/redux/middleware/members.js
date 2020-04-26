@@ -9,5 +9,7 @@ export default async () => {
   return {
     success: response.data.success,
     message: response.data.message,
+    members: response.data.members,
+    count: response.data.count,
   };
 };

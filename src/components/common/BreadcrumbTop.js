@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-const BreadcrumbTop = () => {
+const BreadcrumbTop = ({ currentPage, currentLink }) => {
   return (
     <div className="row header-dashboard-rw">
       <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 header-dashboard-cl">
@@ -20,7 +20,7 @@ const BreadcrumbTop = () => {
                 icon={faAngleRight}
                 style={{ marginLeft: "5px", marginRight: "5px" }}
               />
-              <Link to="">App Page</Link>
+              <Link to={currentLink}>{currentPage}</Link>
             </p>
           </div>
         </div>

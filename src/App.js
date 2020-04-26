@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Members from "./pages/Members";
 import PrivateRoute from "./components/common/PrivateRoute";
+import MyProfile from "./pages/MyProfile";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <PrivateRoute exact path="/members">
             <Members />
+          </PrivateRoute>
+          <PrivateRoute exact path="/my-profile">
+            <MyProfile />
           </PrivateRoute>
         </Switch>
       </Router>

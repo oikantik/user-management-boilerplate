@@ -47,7 +47,7 @@ const SidebarNav = () => {
                   </Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Link to="/" className="dropdown-item">
+                  <Link to="/my-profile" className="dropdown-item">
                     My Profile
                   </Link>
                 </Nav.Item>

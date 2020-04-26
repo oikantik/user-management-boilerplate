@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
+
 import Footer from "../components/common/Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import SidebarNav from "../components/common/SidebarNav";
-import MembersList from "../components/members/MembersList";
 import BreadcrumbTop from "../components/common/BreadcrumbTop";
+import SingleProfile from "../components/profile/SingleProfile";
 
-const Members = () => {
+const MyProfile = () => {
   return (
     <Fragment>
       <section className="content-main-area">
@@ -16,8 +17,11 @@ const Members = () => {
               xl={10}
               className="col-lg-10 col-md-12 col-sm-12 col-12 content-right-area-cl content-right-area-cl"
             >
-              <BreadcrumbTop currentPage="Members" currentLink="/members" />
-              <MembersList />
+              <BreadcrumbTop
+                currentLink="/my-profile"
+                currentPage="My Profile"
+              />
+              <SingleProfile />
             </Col>
           </Row>
         </Container>
@@ -27,4 +31,4 @@ const Members = () => {
   );
 };
 
-export default Members;
+export default MyProfile;

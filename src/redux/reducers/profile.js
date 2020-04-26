@@ -15,13 +15,14 @@ const initialState = {
   userRole: "",
   editProfile: false,
   viewProfile: true,
+  updated: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.GET_MY_PROFILE:
       return { ...state, loading: true };
-    case types.GET_MY_PROFILE_SUCCESS:
+    case types.GET_MY_PROFILE_SUCCESS: {
       const {
         success,
         name,
@@ -48,13 +49,16 @@ export default (state = initialState, action) => {
         website,
         userRole,
       };
-    case types.GET_MEMBERS_FAILURE:
+    }
+    case types.GET_MEMBERS_FAILURE: {
+      const { success, message } = action.payload;
       return {
         ...state,
         loading: false,
-        success: action.payload.success,
-        error: action.payload.message,
+        success: success,
+        error: message,
       };
+    }
     case types.LOAD_EDIT_PROFILE:
       return {
         ...state,
@@ -66,7 +70,49 @@ export default (state = initialState, action) => {
         ...state,
         viewProfile: true,
         editProfile: false,
+        updated: false,
       };
+    case types.UPDATE_MY_PROFILE:
+      return { ...state, loading: true };
+    case types.UPDATE_MY_PROFILE_SUCCESS: {
+      const {
+        success,
+        name,
+        email,
+        dob,
+        gender,
+        aboutMe,
+        address,
+        phone,
+        website,
+        userRole,
+        updated,
+      } = action.payload;
+      return {
+        ...state,
+        loading: false,
+        success,
+        name,
+        email,
+        dob,
+        gender,
+        aboutMe,
+        address,
+        phone,
+        website,
+        userRole,
+        updated,
+      };
+    }
+    case types.UPDATE_MY_PROFILE_FAILURE: {
+      const { success, message } = action.payload;
+      return {
+        ...state,
+        loading: false,
+        success: success,
+        error: message,
+      };
+    }
     default:
       return state;
   }

@@ -5,6 +5,7 @@ import {
   getMyProfile,
   loadEditProfile,
   loadViewProfile,
+  updateMyProfile,
 } from "../../redux/actions/profile";
 import UpdateSingleProfile from "./UpdateSingleProfile";
 import ViewProfile from "./ViewProfile";
@@ -13,6 +14,7 @@ const SingleProfile = ({
   handleGetMyProfile,
   handleLoadEditProfile,
   handleLoadViewProfile,
+  handleUpdateProfile,
   name,
   email,
   dob,
@@ -24,6 +26,8 @@ const SingleProfile = ({
   userRole,
   viewProfile,
   editProfile,
+  updated,
+  error,
 }) => {
   useEffect(() => {
     handleGetMyProfile();
@@ -56,6 +60,9 @@ const SingleProfile = ({
           userRole={userRole}
           editProfile={editProfile}
           handleLoadViewProfile={handleLoadViewProfile}
+          handleUpdateProfile={handleUpdateProfile}
+          updated={updated}
+          error={error}
         />
       )}
     </Fragment>
@@ -75,6 +82,21 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(loadViewProfile());
       return false;
     },
+    handleUpdateProfile: (e) => {
+      const payload = {
+        name: e.name,
+        email: e.email,
+        dob: e.dob,
+        gender: e.gender,
+        aboutMe: e.aboutMe,
+        website: e.website,
+        phone: e.phone,
+        userRole: e.userRole,
+        address: e.address,
+      };
+      dispatch(updateMyProfile(payload));
+      return false;
+    },
   };
 };
 
@@ -91,6 +113,8 @@ const mapStateToProps = (state) => {
     userRole,
     viewProfile,
     editProfile,
+    updated,
+    error,
   } = state.profile;
   return {
     name,
@@ -104,6 +128,8 @@ const mapStateToProps = (state) => {
     userRole,
     viewProfile,
     editProfile,
+    updated,
+    error,
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProfile);

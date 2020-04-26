@@ -17,3 +17,10 @@ export const loadViewProfile = () => {
     type: types.LOAD_VIEW_PROFILE,
   };
 };
+
+export const updateMyProfile = (payload) => {
+  return {
+    type: types.UPDATE_MY_PROFILE,
+    payload: payload,
+  };
+};

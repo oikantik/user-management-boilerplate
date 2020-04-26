@@ -37,26 +37,22 @@ const SidebarNav = () => {
               </div>
               <Nav as="ul" className="das-nav-ul">
                 <Nav.Item as="li">
-                  <Link href="/" className="dropdown-item">
+                  <Link to="/" className="dropdown-item">
                     Home
                   </Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Link href="/" className="dropdown-item">
+                  <Link to="/" className="dropdown-item">
                     Manage Members
                   </Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Link href="/" className="dropdown-item">
+                  <Link to="/" className="dropdown-item">
                     My Profile
                   </Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Link
-                    href="/"
-                    className="dropdown-item"
-                    onClick={handleLogout}
-                  >
+                  <Link to="/" className="dropdown-item" onClick={handleLogout}>
                     Logout
                   </Link>
                 </Nav.Item>

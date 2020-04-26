@@ -194,10 +194,6 @@ button.navbar-toggler {
   margin-left: auto;
 }
 
-span.navbar-toggler-icon {
-  display: none;
-}
-
 i.fa.fa-bars {
   color: #cecece;
   font-size: 30px;
@@ -1495,15 +1491,13 @@ ul.pagination {
 ===================1400=========================
 */
 
-@media (min-width: 1400px) {
-}
+@media (min-width: 1400px) {}
 
 /*
 ===================1200-1399=========================
 */
 
-@media (min-width: 1200px) and (max-width: 1400px) {
-}
+@media (min-width: 1200px) and (max-width: 1400px) {}
 
 /*
 @media(min-width: 1200px){
@@ -2054,6 +2048,7 @@ ul.pagination {
 */
 
 @media (min-width: 320px) and (max-width: 479px) {
+
   p,
   h1,
   h2,
@@ -2433,6 +2428,7 @@ ul.pagination {
 */
 
 @media (max-width: 319px) {
+
   p,
   h1,
   h2,

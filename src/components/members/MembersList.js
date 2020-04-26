@@ -55,6 +55,7 @@ const MembersList = () => {
           <Col
             xl={12}
             className="col-lg-12 col-md-12 col-sm-12 col-12 members-data-cl"
+            style={{ height: "100vh" }}
           >
             <div className="members-data-all">
               <Row className="members-data-rw-up ">

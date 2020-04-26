@@ -1,5 +1,5 @@
 import React from "react";
-import { Col } from "react-bootstrap";
+import { Col, Navbar, Nav } from "react-bootstrap";
 import Logo from "../../images/LOGO.png";
 import { Link } from "react-router-dom";
 
@@ -19,21 +19,11 @@ const SidebarNav = () => {
             <img src={Logo} alt="" className="img-fluid" />
           </Link>
         </div>
-        <div className="navbar navbar-expand-lg">
-          {/** <!-- Toggler/collapsibe Button --> */}
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#myNav"
-          >
-            <i className="fa fa-bars"></i>
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse
+            id="responsive-navbar-nav"
             className="left-profile-dashboard collapse navbar-collapse"
-            id="myNav"
           >
             <div className="nav-info">
               <div className="das-das">
@@ -45,33 +35,35 @@ const SidebarNav = () => {
               <div className="das-hr">
                 <hr />
               </div>
-
-              <ul className="navbar-nav das-nav-ul">
-                <li className="nav-item">
-                  <Link to="" className="dropdown-item">
+              <Nav as="ul" className="das-nav-ul">
+                <Nav.Item as="li">
+                  <Link href="/" className="dropdown-item">
                     Home
                   </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link to="" className="dropdown-item">
+                </Nav.Item>
+                <Nav.Item as="li">
+                  <Link href="/" className="dropdown-item">
                     Manage Members
                   </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="" className="dropdown-item">
+                </Nav.Item>
+                <Nav.Item as="li">
+                  <Link href="/" className="dropdown-item">
                     My Profile
                   </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/" className="dropdown-item" onClick={handleLogout}>
-                    Log Out
+                </Nav.Item>
+                <Nav.Item as="li">
+                  <Link
+                    href="/"
+                    className="dropdown-item"
+                    onClick={handleLogout}
+                  >
+                    Logout
                   </Link>
-                </li>
-              </ul>
+                </Nav.Item>
+              </Nav>
             </div>
-          </div>
-        </div>
+          </Navbar.Collapse>
+        </Navbar>
       </div>
     </Col>
   );

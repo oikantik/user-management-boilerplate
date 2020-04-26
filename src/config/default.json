@@ -1,5 +1,6 @@
 {
   "registerUserURI": "http://localhost:5000/register",
   "loginUserURI": "http://localhost:5000/login",
-  "getMembersListURI": "http://localhost:5000/members"
+  "getMembersListURI": "http://localhost:5000/members",
+  "getProfileURI": "http://localhost:5000/my-profile"
 }

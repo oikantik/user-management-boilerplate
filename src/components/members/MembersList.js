@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThList, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faThList } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import MembersTable from "./MembersTable";
@@ -13,38 +13,6 @@ const MembersList = () => {
         xl={12}
         className="col-lg-12 col-md-12 col-sm-12 col-12 main-board-cl-left members-info-area-cl"
       >
-        <Row className="members-info-area-cl-rw">
-          <Col
-            xl={6}
-            className="col-lg-6 col-md-6 col-sm-12 col-12 members-info-cl"
-          >
-            <div className="members-left-txt">
-              <h4>
-                <FontAwesomeIcon
-                  size="sm"
-                  icon={faThList}
-                  style={{ marginRight: "10px" }}
-                />
-                Members Data
-              </h4>
-              <p>Table to display analytical data effectively Tables</p>
-            </div>
-          </Col>
-
-          <Col
-            xl={6}
-            className="col-lg-6 col-md-6 col-sm-12 col-12 members-info-cl"
-          >
-            <div className="members-right-txt">
-              <p>
-                <FontAwesomeIcon icon={faHome} />
-                <span>/</span> Manage Members <span>/</span>{" "}
-                <Link to="">Members Data</Link>
-              </p>
-            </div>
-          </Col>
-        </Row>
-
         <Row className="members-data-rw ">
           <Col
             xl={12}
@@ -52,6 +20,17 @@ const MembersList = () => {
             style={{ height: "100vh" }}
           >
             <div className="members-data-all">
+              <div className="members-left-txt">
+                <h4>
+                  <FontAwesomeIcon
+                    size="sm"
+                    icon={faThList}
+                    style={{ marginRight: "10px" }}
+                  />
+                  Members Data
+                </h4>
+                <p>Table to display analytical data effectively Tables</p>
+              </div>
               <Row className="members-data-rw-up ">
                 <Col
                   xl={6}

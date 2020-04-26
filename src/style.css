@@ -1167,7 +1167,7 @@ lable.pay-hd {
 
 .main-board-cl-left.profile-info-area-cl {
   border-right: none;
-  height: auto;
+  height: 100vh;
 }
 
 .profile-info-area-txt {

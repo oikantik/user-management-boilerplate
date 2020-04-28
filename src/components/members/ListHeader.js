@@ -25,10 +25,10 @@ const ListHeader = () => {
             <div className="show-list">
               <span>Show</span>
               <select name="text">
-                <option value="volvo">10</option>
-                <option value="saab">20</option>
-                <option value="fiat">30</option>
-                <option value="audi">40</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">50</option>
+                <option value="30">100</option>
               </select>
               <span>entries</span>
             </div>

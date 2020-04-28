@@ -4,8 +4,8 @@ import Logo from "../../images/LOGO.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMembers } from "../../redux/actions/members";
-
-const SidebarNav = ({ handleMembersLinkClick }) => {
+import { loadViewProfile } from "../../redux/actions/profile";
+const SidebarNav = ({ handleMembersLinkClick, handleLoadViewProfile }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     return false;
@@ -53,7 +53,11 @@ const SidebarNav = ({ handleMembersLinkClick }) => {
                   </Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Link to="/my-profile" className="dropdown-item">
+                  <Link
+                    to="/my-profile"
+                    className="dropdown-item"
+                    onClick={handleLoadViewProfile}
+                  >
                     My Profile
                   </Link>
                 </Nav.Item>
@@ -75,6 +79,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleMembersLinkClick: () => {
       dispatch(getMembers());
+    },
+    handleLoadViewProfile: () => {
+      dispatch(loadViewProfile());
     },
   };
 };

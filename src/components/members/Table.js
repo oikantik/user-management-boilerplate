@@ -36,7 +36,7 @@ const Table = ({
                   <th className="list-option-nm">
                     <p>Name</p>
                     <p className="updown">
-                      <Link to="">
+                      <Link to="" className="sort-by">
                         <FontAwesomeIcon
                           icon={faLongArrowAltUp}
                           style={{
@@ -45,7 +45,7 @@ const Table = ({
                           }}
                         />
                       </Link>
-                      <Link to="">
+                      <Link to="" className="sort-by">
                         <FontAwesomeIcon
                           icon={faLongArrowAltDown}
                           style={{
@@ -60,7 +60,7 @@ const Table = ({
                   <th className="list-option-ps">
                     <p>User Role</p>
                     <p className="updown">
-                      <Link to="">
+                      <Link to="" className="sort-by">
                         <FontAwesomeIcon
                           icon={faLongArrowAltUp}
                           style={{
@@ -69,7 +69,7 @@ const Table = ({
                           }}
                         />
                       </Link>
-                      <Link to="">
+                      <Link to="" className="sort-by">
                         <FontAwesomeIcon
                           icon={faLongArrowAltDown}
                           style={{

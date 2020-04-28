@@ -21,6 +21,16 @@ h6 {
   font-family: "Ubuntu", sans-serif;
 }
 
+/*---------- Breadcrumbs a href------- */
+.breadcrumbs {
+  color: #009587 !important;
+}
+
+/*---------- sort by ------- */
+.sort-by {
+  color: #5f5f5f !important;
+}
+
 /*----------validation-errors---------*/
 
 .validation-errors {
@@ -1492,15 +1502,13 @@ ul.pagination {
 ===================1400=========================
 */
 
-@media (min-width: 1400px) {
-}
+@media (min-width: 1400px) {}
 
 /*
 ===================1200-1399=========================
 */
 
-@media (min-width: 1200px) and (max-width: 1400px) {
-}
+@media (min-width: 1200px) and (max-width: 1400px) {}
 
 /*
 @media(min-width: 1200px){
@@ -2051,6 +2059,7 @@ ul.pagination {
 */
 
 @media (min-width: 320px) and (max-width: 479px) {
+
   p,
   h1,
   h2,
@@ -2430,6 +2439,7 @@ ul.pagination {
 */
 
 @media (max-width: 319px) {
+
   p,
   h1,
   h2,

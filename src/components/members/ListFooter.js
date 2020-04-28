@@ -11,7 +11,11 @@ const ListFooter = ({ count }) => {
       >
         <div className="pagi-data-hd-lft">
           <div className="show-list-pagi">
-            <span>Showing 1 to 10 of {count} entries</span>
+            {count > 1 ? (
+              <span>{count} entries found</span>
+            ) : (
+              <span>{count} entry found</span>
+            )}
           </div>
         </div>
       </Col>

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
 import { Formik } from "formik";
@@ -42,6 +42,9 @@ const UpdateSingleProfile = ({
   handleLoadViewProfile,
   handleUpdateProfile,
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Fragment>
       <Row className="main-board profile-info-area">
@@ -99,7 +102,7 @@ const UpdateSingleProfile = ({
                           <Form.Label>Name</Form.Label>
                           <Form.Control
                             type="name"
-                            name="fullName"
+                            name="name"
                             onChange={handleChange}
                             value={values.name}
                           />

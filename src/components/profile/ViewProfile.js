@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Row, Button } from "react-bootstrap";
 import temporaryAvatar from "../../images/male-avatar1.png";
 
@@ -14,6 +14,9 @@ const ViewProfile = ({
   website,
   userRole,
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Row className="main-board profile-info-area">
       <Col

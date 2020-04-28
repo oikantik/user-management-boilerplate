@@ -15,12 +15,16 @@ const BreadcrumbTop = ({ currentPage, currentLink }) => {
                 size="lg"
                 style={{ marginRight: "10px" }}
               />
-              <Link to="">Dashboard</Link>
+              <Link to="" className="breadcrumbs">
+                Dashboard
+              </Link>
               <FontAwesomeIcon
                 icon={faAngleRight}
                 style={{ marginLeft: "5px", marginRight: "5px" }}
               />
-              <Link to={currentLink}>{currentPage}</Link>
+              <Link to={currentLink} className="breadcrumbs">
+                {currentPage}
+              </Link>
             </p>
           </div>
         </div>

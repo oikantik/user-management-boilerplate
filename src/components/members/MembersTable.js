@@ -7,14 +7,25 @@ import {
   faLongArrowAltDown,
   faPencilAlt,
   faTimes,
+  faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-import { getMembers } from "../../redux/actions/members";
+import {
+  getMembers,
+  getMemberProfile,
+  editMemberProfile,
+} from "../../redux/actions/members";
 import { connect } from "react-redux";
 
-const MembersTable = ({ handleGetMembersList, list, count }) => {
+const MembersTable = ({
+  handleGetMembersList,
+  handleGetMemberProfile,
+  handleLoadEditProfile,
+  list,
+  count,
+}) => {
   useEffect(() => {
     handleGetMembersList();
   }, [handleGetMembersList]);
@@ -80,7 +91,9 @@ const MembersTable = ({ handleGetMembersList, list, count }) => {
                   <th className="list-option-ed">
                     <p>Edit</p>
                   </th>
-
+                  <th className="list-option-vi">
+                    <p>View</p>
+                  </th>
                   <th className="list-option-de">
                     <p>Delete</p>
                   </th>
@@ -92,7 +105,10 @@ const MembersTable = ({ handleGetMembersList, list, count }) => {
                     <td>{member.name}</td>
                     <td>{member.userRole}</td>
                     <td className="icon">
-                      <Link to="">
+                      <Link
+                        to=""
+                        onClick={(e) => handleLoadEditProfile(e, member.email)}
+                      >
                         <FontAwesomeIcon
                           icon={faPencilAlt}
                           style={{
@@ -101,6 +117,21 @@ const MembersTable = ({ handleGetMembersList, list, count }) => {
                           }}
                         />
                         Edit
+                      </Link>
+                    </td>
+                    <td className="icon">
+                      <Link
+                        to=""
+                        onClick={(e) => handleGetMemberProfile(e, member.email)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faEye}
+                          style={{
+                            marginRight: "10px",
+                            marginLeft: "2px",
+                          }}
+                        />
+                        View
                       </Link>
                     </td>
                     <td className="icon">
@@ -133,6 +164,16 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleGetMembersList: () => {
       dispatch(getMembers());
+    },
+    handleGetMemberProfile: (e, email) => {
+      e.preventDefault();
+      dispatch(getMemberProfile(email));
+      return false;
+    },
+    handleLoadEditProfile: (e, email) => {
+      e.preventDefault();
+      dispatch(editMemberProfile(email));
+      return false;
     },
   };
 };

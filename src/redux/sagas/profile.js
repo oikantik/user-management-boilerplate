@@ -28,9 +28,9 @@ function* setMyProfile(action) {
   }
 }
 
-export function* watchGetMembers() {
+export function* watchGetProfile() {
   yield takeLatest(types.GET_MY_PROFILE, getMyProfile);
 }
-export function* watchSetMembers() {
+export function* watchSetProfile() {
   yield takeLatest(types.UPDATE_MY_PROFILE, setMyProfile);
 }

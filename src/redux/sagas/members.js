@@ -2,11 +2,15 @@
 
 import { call, put, takeLatest } from "redux-saga/effects";
 import * as types from "../constants";
-import members from "../middleware/members";
+import {
+  getMembers,
+  getMemberProfile,
+  setMemberProfile,
+} from "../middleware/members";
 
-function* getMembers(action) {
+function* getAllMembers(action) {
   try {
-    const payload = yield call(members, action.payload);
+    const payload = yield call(getMembers, action.payload);
     yield put({ type: types.GET_MEMBERS_SUCCESS, payload });
   } catch (err) {
     yield put({
@@ -16,6 +20,53 @@ function* getMembers(action) {
   }
 }
 
-export default function* watchGetMembers() {
-  yield takeLatest(types.GET_MEMBERS, getMembers);
+function* getTheMemberProfile(action) {
+  try {
+    const payload = yield call(getMemberProfile, action.payload);
+    yield put({ type: types.GET_MEMBER_PROFILE_SUCCESS, payload });
+  } catch (err) {
+    yield put({
+      type: types.GET_MEMBER_PROFILE_FAILURE,
+      payload: err.response.data,
+    });
+  }
+}
+
+function* loadEditTheMemberProfile(action) {
+  try {
+    const payload = yield call(getMemberProfile, action.payload);
+    yield put({ type: types.LOAD_EDIT_MEMBER_PROFILE_SUCCESS, payload });
+  } catch (err) {
+    yield put({
+      type: types.LOAD_EDIT_MEMBER_PROFILE_FAILURE,
+      payload: err.response.data,
+    });
+  }
+}
+
+function* setTheMemberProfile(action) {
+  try {
+    const payload = yield call(setMemberProfile, action.payload);
+    yield put({ type: types.UPDATE_MEMBER_PROFILE_SUCCESS, payload });
+  } catch (err) {
+    yield put({
+      type: types.UPDATE_MEMBER_PROFILE_FAILURE,
+      payload: err.response.data,
+    });
+  }
+}
+
+export function* watchGetAllMembers() {
+  yield takeLatest(types.GET_MEMBERS, getAllMembers);
+}
+
+export function* watchGetMemberProfile() {
+  yield takeLatest(types.GET_MEMBER_PROFILE, getTheMemberProfile);
+}
+export function* watchLoadEditMemberProfile() {
+  yield takeLatest(types.LOAD_EDIT_MEMBER_PROFILE, loadEditTheMemberProfile);
+}
+
+export function* watchSetMemberProfile() {
+  yield takeLatest(types.UPDATE_MEMBER_PROFILE, setTheMemberProfile);
 }

@@ -1,13 +1,41 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThList } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import MembersTable from "./MembersTable";
+import MembersListHeader from "./MembersListHeader";
+import MembersListFooter from "./MembersListFooter";
+import ViewProfile from "./ViewProfile";
+import UpdateProfile from "./UpdateProfile";
+import {
+  getMembers,
+  editMemberProfile,
+  setMemberProfile,
+  getMemberProfile,
+} from "../../redux/actions/members";
 
-const MembersList = ({ count }) => {
+const MembersList = ({
+  loading,
+  handleMembersLinkClick,
+  count,
+  name,
+  email,
+  dob,
+  gender,
+  aboutMe,
+  address,
+  phone,
+  website,
+  userRole,
+  handleLoadEditProfile,
+  getCurrentProfileSuccess,
+  editCurrentProfileSuccess,
+  viewCurrentProfile,
+  editCurrentProfile,
+  handleUpdateProfile,
+  handleLoadViewProfile,
+  updatedCurrentProfile,
+}) => {
   return (
     <Row className="main-board members-info-area">
       <Col
@@ -18,107 +46,47 @@ const MembersList = ({ count }) => {
           <Col
             xl={12}
             className="col-lg-12 col-md-12 col-sm-12 col-12 members-data-cl"
-            style={{ height: "100vh" }}
+            style={{ height: "auto", minHeight: "100vh" }}
           >
-            <div className="members-data-all">
-              <div className="members-left-txt">
-                <h4>
-                  <FontAwesomeIcon
-                    size="sm"
-                    icon={faThList}
-                    style={{ marginRight: "10px" }}
-                  />
-                  Members Data
-                </h4>
-                <p>Table to display analytical data effectively Tables</p>
+            {viewCurrentProfile && (
+              <ViewProfile
+                name={name}
+                email={email}
+                dob={dob}
+                gender={gender}
+                aboutMe={aboutMe}
+                address={address}
+                phone={phone}
+                website={website}
+                userRole={userRole}
+                handleLoadEditProfile={handleLoadEditProfile}
+                handleMembersLinkClick={handleMembersLinkClick}
+              />
+            )}
+            {!viewCurrentProfile && editCurrentProfile && (
+              <UpdateProfile
+                name={name}
+                email={email}
+                dob={dob}
+                gender={gender}
+                aboutMe={aboutMe}
+                address={address}
+                phone={phone}
+                website={website}
+                userRole={userRole}
+                updated={updatedCurrentProfile}
+                handleLoadViewProfile={handleLoadViewProfile}
+                handleMembersLinkClick={handleMembersLinkClick}
+                handleUpdateProfile={handleUpdateProfile}
+              />
+            )}
+            {!viewCurrentProfile && !editCurrentProfile && (
+              <div className="members-data-all">
+                <MembersListHeader />
+                <MembersTable />
+                <MembersListFooter count={count} />
               </div>
-              <Row className="members-data-rw-up ">
-                <Col
-                  xl={6}
-                  className="col-lg-6 col-md-6 col-sm-12 col-12 members-data-cl-hd-lft"
-                >
-                  <div className="members-data-hd-lft">
-                    <div className="show-list">
-                      <span>Show</span>
-                      <select name="text">
-                        <option value="volvo">10</option>
-                        <option value="saab">20</option>
-                        <option value="fiat">30</option>
-                        <option value="audi">40</option>
-                      </select>
-                      <span>entries</span>
-                    </div>
-                  </div>
-                </Col>
-
-                <Col
-                  xl={6}
-                  className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 members-data-cl-hd-rt"
-                >
-                  <div className="members-data-hd-rt">
-                    <div className="members-filter-src">
-                      <input
-                        className="form-control"
-                        id="myInput"
-                        type="text"
-                        placeholder="Search.."
-                      />
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-
-              {/** <!--Table--> */}
-              <MembersTable />
-
-              {/** <!--Pagination-->  */}
-
-              <Row className="pagi-data-rw-up ">
-                <Col
-                  xl={6}
-                  className="col-lg-6 col-md-6 col-sm-12 col-12 pagi-data-cl-hd-lft"
-                >
-                  <div className="pagi-data-hd-lft">
-                    <div className="show-list-pagi">
-                      <span>Showing 1 to 10 of {count} entries</span>
-                    </div>
-                  </div>
-                </Col>
-
-                <Col
-                  xl={6}
-                  className="col-lg-6 col-md-6 col-sm-12 col-12 pagi-data-cl-hd-rt"
-                >
-                  <div className="pagi-data-hd-rt">
-                    <div className="pagi-filter-src">
-                      <ul className="pagination">
-                        <li className="page-item">
-                          <Link to="" className="page-link">
-                            Previous
-                          </Link>
-                        </li>
-                        <li className="page-item">
-                          <Link to="" className="page-link">
-                            1
-                          </Link>
-                        </li>
-                        <li className="page-item">
-                          <Link to="" className="page-link" href="#">
-                            2
-                          </Link>
-                        </li>
-
-                        <li className="page-item">
-                          <Link to="" className="page-link" href="#">
-                            Next
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </div>
+            )}
           </Col>
         </Row>
       </Col>
@@ -126,10 +94,76 @@ const MembersList = ({ count }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    count: state.members.count,
+    handleMembersLinkClick: () => {
+      dispatch(getMembers());
+    },
+    handleLoadEditProfile: (email) => {
+      dispatch(editMemberProfile(email));
+    },
+    handleLoadViewProfile: (e, email) => {
+      e.preventDefault();
+      dispatch(getMemberProfile(email));
+      return false;
+    },
+    handleUpdateProfile: (e) => {
+      const payload = {
+        name: e.name,
+        email: e.email,
+        dob: e.dob,
+        gender: e.gender,
+        aboutMe: e.aboutMe,
+        website: e.website,
+        phone: e.phone,
+        userRole: e.userRole,
+        address: e.address,
+      };
+      dispatch(setMemberProfile(payload));
+      return false;
+    },
   };
 };
 
-export default connect(mapStateToProps)(MembersList);
+const mapStateToProps = (state) => {
+  const {
+    name,
+    email,
+    dob,
+    gender,
+    aboutMe,
+    address,
+    phone,
+    website,
+    userRole,
+  } = state.members.currentMember;
+  const {
+    getCurrentProfileSuccess,
+    editCurrentProfileSuccess,
+    viewCurrentProfile,
+    editCurrentProfile,
+    updatedCurrentProfile,
+    count,
+    loading,
+  } = state.members;
+  return {
+    loading,
+    count,
+    name,
+    email,
+    dob,
+    gender,
+    aboutMe,
+    address,
+    phone,
+    website,
+    userRole,
+    getCurrentProfileSuccess,
+    editCurrentProfileSuccess,
+    viewCurrentProfile,
+    editCurrentProfile,
+    updatedCurrentProfile,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MembersList);

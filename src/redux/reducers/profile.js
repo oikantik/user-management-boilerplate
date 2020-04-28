@@ -50,7 +50,7 @@ export default (state = initialState, action) => {
         userRole,
       };
     }
-    case types.GET_MEMBERS_FAILURE: {
+    case types.GET_MY_PROFILE_FAILURE: {
       const { success, message } = action.payload;
       return {
         ...state,

@@ -2,8 +2,10 @@ import React from "react";
 import { Col, Navbar, Nav } from "react-bootstrap";
 import Logo from "../../images/LOGO.png";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getMembers } from "../../redux/actions/members";
 
-const SidebarNav = () => {
+const SidebarNav = ({ handleMembersLinkClick }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     return false;
@@ -42,7 +44,11 @@ const SidebarNav = () => {
                   </Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Link to="/" className="dropdown-item">
+                  <Link
+                    to="/members"
+                    className="dropdown-item"
+                    onClick={handleMembersLinkClick}
+                  >
                     Manage Members
                   </Link>
                 </Nav.Item>
@@ -65,4 +71,12 @@ const SidebarNav = () => {
   );
 };
 
-export default SidebarNav;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleMembersLinkClick: () => {
+      dispatch(getMembers());
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SidebarNav);

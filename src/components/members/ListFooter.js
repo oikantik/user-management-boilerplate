@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const MembersListFooter = ({ count }) => {
+const ListFooter = ({ count }) => {
   return (
     <Row className="pagi-data-rw-up ">
       <Col
@@ -52,4 +52,4 @@ const MembersListFooter = ({ count }) => {
   );
 };
 
-export default MembersListFooter;
+export default ListFooter;

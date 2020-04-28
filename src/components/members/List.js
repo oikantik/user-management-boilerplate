@@ -2,9 +2,9 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import MembersTable from "./MembersTable";
-import MembersListHeader from "./MembersListHeader";
-import MembersListFooter from "./MembersListFooter";
+import Table from "./Table";
+import ListHeader from "./ListHeader";
+import ListFooter from "./ListFooter";
 import ViewProfile from "./ViewProfile";
 import UpdateProfile from "./UpdateProfile";
 import {
@@ -82,9 +82,9 @@ const MembersList = ({
             )}
             {!viewCurrentProfile && !editCurrentProfile && (
               <div className="members-data-all">
-                <MembersListHeader />
-                <MembersTable />
-                <MembersListFooter count={count} />
+                <ListHeader />
+                <Table />
+                <ListFooter count={count} />
               </div>
             )}
           </Col>

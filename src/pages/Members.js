@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Footer from "../components/common/Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import SidebarNav from "../components/common/SidebarNav";
-import MembersList from "../components/members/MembersList";
+import MembersList from "../components/members/List";
 import BreadcrumbTop from "../components/common/BreadcrumbTop";
 
 const Members = () => {

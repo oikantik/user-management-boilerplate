@@ -19,7 +19,7 @@ import {
 } from "../../redux/actions/members";
 import { connect } from "react-redux";
 
-const MembersTable = ({
+const Table = ({
   handleGetMembersList,
   handleGetMemberProfile,
   handleLoadEditProfile,
@@ -185,4 +185,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MembersTable);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

@@ -7,10 +7,10 @@ import {
   loadViewProfile,
   updateMyProfile,
 } from "../../redux/actions/profile";
-import UpdateSingleProfile from "./UpdateSingleProfile";
+import UpdateSingleProfile from "./UpdateProfile";
 import ViewProfile from "./ViewProfile";
 
-const SingleProfile = ({
+const LoadProfile = ({
   handleGetMyProfile,
   handleLoadEditProfile,
   handleLoadViewProfile,
@@ -132,4 +132,4 @@ const mapStateToProps = (state) => {
     error,
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SingleProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(LoadProfile);

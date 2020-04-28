@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThList } from "@fortawesome/free-solid-svg-icons";
-const MembersListHeader = () => {
+const ListHeader = () => {
   return (
     <Fragment>
       <div className="members-left-txt">
@@ -55,4 +55,4 @@ const MembersListHeader = () => {
   );
 };
 
-export default MembersListHeader;
+export default ListHeader;

@@ -4,7 +4,7 @@ import Footer from "../components/common/Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import SidebarNav from "../components/common/SidebarNav";
 import BreadcrumbTop from "../components/common/BreadcrumbTop";
-import SingleProfile from "../components/profile/SingleProfile";
+import LoadProfile from "../components/profile/LoadProfile";
 
 const MyProfile = () => {
   return (
@@ -21,7 +21,7 @@ const MyProfile = () => {
                 currentLink="/my-profile"
                 currentPage="My Profile"
               />
-              <SingleProfile />
+              <LoadProfile />
             </Col>
           </Row>
         </Container>

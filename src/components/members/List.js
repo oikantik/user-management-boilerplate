@@ -15,8 +15,8 @@ import {
 } from "../../redux/actions/members";
 
 const MembersList = ({
+  list,
   loading,
-  handleMembersLinkClick,
   count,
   name,
   email,
@@ -27,14 +27,17 @@ const MembersList = ({
   phone,
   website,
   userRole,
-  handleLoadEditProfile,
   getCurrentProfileSuccess,
   editCurrentProfileSuccess,
   viewCurrentProfile,
   editCurrentProfile,
+  updatedCurrentProfile,
+  handleGetMembersList,
+  handleGetMemberProfile,
+  handleMembersLinkClick,
+  handleLoadEditProfile,
   handleUpdateProfile,
   handleLoadViewProfile,
-  updatedCurrentProfile,
 }) => {
   return (
     <Row className="main-board members-info-area">
@@ -83,7 +86,13 @@ const MembersList = ({
             {!viewCurrentProfile && !editCurrentProfile && (
               <div className="members-data-all">
                 <ListHeader />
-                <Table />
+                <Table
+                  handleGetMembersList={handleGetMembersList}
+                  handleGetMemberProfile={handleGetMemberProfile}
+                  handleLoadEditProfile={handleLoadEditProfile}
+                  list={list}
+                  count={count}
+                />
                 <ListFooter count={count} />
               </div>
             )}
@@ -99,8 +108,18 @@ const mapDispatchToProps = (dispatch) => {
     handleMembersLinkClick: () => {
       dispatch(getMembers());
     },
-    handleLoadEditProfile: (email) => {
+    handleGetMembersList: () => {
+      dispatch(getMembers());
+    },
+    handleGetMemberProfile: (e, email) => {
+      e.preventDefault();
+      dispatch(getMemberProfile(email));
+      return false;
+    },
+    handleLoadEditProfile: (e, email) => {
+      e.preventDefault();
       dispatch(editMemberProfile(email));
+      return false;
     },
     handleLoadViewProfile: (e, email) => {
       e.preventDefault();
@@ -145,6 +164,7 @@ const mapStateToProps = (state) => {
     updatedCurrentProfile,
     count,
     loading,
+    list,
   } = state.members;
   return {
     loading,
@@ -163,6 +183,7 @@ const mapStateToProps = (state) => {
     viewCurrentProfile,
     editCurrentProfile,
     updatedCurrentProfile,
+    list,
   };
 };
 

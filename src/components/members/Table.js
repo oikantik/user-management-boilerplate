@@ -12,13 +12,6 @@ import {
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-import {
-  getMembers,
-  getMemberProfile,
-  editMemberProfile,
-} from "../../redux/actions/members";
-import { connect } from "react-redux";
-
 const Table = ({
   handleGetMembersList,
   handleGetMemberProfile,
@@ -160,29 +153,4 @@ const Table = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleGetMembersList: () => {
-      dispatch(getMembers());
-    },
-    handleGetMemberProfile: (e, email) => {
-      e.preventDefault();
-      dispatch(getMemberProfile(email));
-      return false;
-    },
-    handleLoadEditProfile: (e, email) => {
-      e.preventDefault();
-      dispatch(editMemberProfile(email));
-      return false;
-    },
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    list: state.members.list,
-    count: state.members.count,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default Table;

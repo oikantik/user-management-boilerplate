@@ -161,7 +161,7 @@ const ViewProfile = ({
               <Button
                 variant="primary"
                 style={{ float: "right" }}
-                onClick={() => handleLoadEditProfile(email)}
+                onClick={(e) => handleLoadEditProfile(e, email)}
                 className="btn-block reg-btn-ftr"
               >
                 Edit Profile

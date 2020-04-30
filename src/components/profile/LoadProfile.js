@@ -10,6 +10,8 @@ import {
 import UpdateSingleProfile from "./UpdateProfile";
 import ViewProfile from "./ViewProfile";
 
+import { baseAvatarURI } from "../../config/default.json";
+
 const LoadProfile = ({
   handleGetMyProfile,
   handleLoadEditProfile,
@@ -24,6 +26,7 @@ const LoadProfile = ({
   phone,
   website,
   userRole,
+  avatarUrl,
   viewProfile,
   editProfile,
   updated,
@@ -45,6 +48,8 @@ const LoadProfile = ({
           phone={phone}
           website={website}
           userRole={userRole}
+          avatarUrl={avatarUrl}
+          baseAvatarURI={baseAvatarURI}
           handleLoadEditProfile={handleLoadEditProfile}
         />
       ) : (
@@ -59,6 +64,8 @@ const LoadProfile = ({
           website={website}
           userRole={userRole}
           editProfile={editProfile}
+          avatarUrl={avatarUrl}
+          baseAvatarURI={baseAvatarURI}
           handleLoadViewProfile={handleLoadViewProfile}
           handleUpdateProfile={handleUpdateProfile}
           updated={updated}
@@ -93,6 +100,7 @@ const mapDispatchToProps = (dispatch) => {
         phone: e.phone,
         userRole: e.userRole,
         address: e.address,
+        avatar: e.avatar,
       };
       dispatch(updateMyProfile(payload));
       return false;
@@ -111,6 +119,7 @@ const mapStateToProps = (state) => {
     phone,
     website,
     userRole,
+    avatarUrl,
     viewProfile,
     editProfile,
     updated,
@@ -126,6 +135,7 @@ const mapStateToProps = (state) => {
     phone,
     website,
     userRole,
+    avatarUrl,
     viewProfile,
     editProfile,
     updated,

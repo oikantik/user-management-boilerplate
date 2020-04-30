@@ -5,6 +5,9 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import Success from "./Success";
+import ProfilePhoto from "../common/ProfilePhoto";
+
+import temporaryAvatar from "../../images/male-avatar1.png";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -37,6 +40,8 @@ const UpdateSingleProfile = ({
   phone,
   website,
   userRole,
+  avatarUrl,
+  baseAvatarURI,
   updated,
   error,
   handleLoadViewProfile,
@@ -60,154 +65,189 @@ const UpdateSingleProfile = ({
               <div className="pro-info-text">
                 {updated && <Success />}
                 {!updated && !error && (
-                  <Formik
-                    enableReinitialize={true}
-                    validationSchema={validationSchema}
-                    onSubmit={handleUpdateProfile}
-                    initialValues={{
-                      name,
-                      email,
-                      dob,
-                      gender,
-                      aboutMe,
-                      address,
-                      phone,
-                      website,
-                      userRole,
-                    }}
-                  >
-                    {({ handleSubmit, handleChange, errors, values }) => (
-                      <Form onSubmit={handleSubmit}>
-                        <Form.Group>
-                          <Form.Label>User Role</Form.Label>
-                          <Form.Control
-                            as="select"
-                            name="userRole"
-                            onChange={handleChange}
-                            value={values.userRole}
+                  <Fragment>
+                    <Formik
+                      enableReinitialize={true}
+                      validationSchema={validationSchema}
+                      onSubmit={handleUpdateProfile}
+                      initialValues={{
+                        name,
+                        email,
+                        dob,
+                        gender,
+                        aboutMe,
+                        address,
+                        phone,
+                        website,
+                        userRole,
+                        avatar: null,
+                      }}
+                    >
+                      {({
+                        handleSubmit,
+                        handleChange,
+                        errors,
+                        values,
+                        setFieldValue,
+                      }) => (
+                        <Form onSubmit={handleSubmit}>
+                          <Row
+                            className="align-items-center"
+                            style={{ marginBottom: "20px" }}
                           >
-                            <option value="">--</option>
-                            <option value="Super Administrator">
-                              Super Administrator
-                            </option>
-                            <option value="Administrator">Administrator</option>
-                            <option value="Coordinator">Coordinator</option>
-                            <option value="Staff">Staff</option>
-                          </Form.Control>
-                          <span className="validation-errors">
-                            {errors.userRole}
-                          </span>
-                        </Form.Group>
-                        <Form.Group>
-                          <Form.Label>Name</Form.Label>
-                          <Form.Control
-                            type="name"
-                            name="name"
-                            onChange={handleChange}
-                            value={values.name}
-                          />
-                          <span className="validation-errors">
-                            {errors.name}
-                          </span>
-                        </Form.Group>
-                        <Form.Group>
-                          <Form.Label>Email address</Form.Label>
-                          <Form.Control
-                            type="email"
-                            name="email"
-                            onChange={handleChange}
-                            value={values.email}
-                          />
-                          <span className="validation-errors">
-                            {errors.email}
-                          </span>
-                        </Form.Group>
-                        <Form.Group>
-                          <Form.Label>Date of Birth</Form.Label>
-                          <Form.Control
-                            type="date"
-                            name="dob"
-                            onChange={handleChange}
-                            value={values.dob}
-                          />
-                          <span className="validation-errors">
-                            {errors.dob}
-                          </span>
-                        </Form.Group>
-                        <Form.Group>
-                          <Form.Label>Gender</Form.Label>
-                          <Form.Control
-                            as="select"
-                            name="gender"
-                            onChange={handleChange}
-                            value={values.gender}
+                            <Col sm={3}>
+                              <div className="pro-img">
+                                <img
+                                  src={
+                                    avatarUrl === ""
+                                      ? temporaryAvatar
+                                      : baseAvatarURI + "/" + avatarUrl
+                                  }
+                                  alt="avatar"
+                                  className="img-fluid"
+                                />
+                              </div>
+                            </Col>
+                            <Col>
+                              <ProfilePhoto setFieldValue={setFieldValue} />
+                            </Col>
+                          </Row>
+                          <Form.Group>
+                            <Form.Label>User Role</Form.Label>
+                            <Form.Control
+                              as="select"
+                              name="userRole"
+                              onChange={handleChange}
+                              value={values.userRole}
+                            >
+                              <option value="">--</option>
+                              <option value="Super Administrator">
+                                Super Administrator
+                              </option>
+                              <option value="Administrator">
+                                Administrator
+                              </option>
+                              <option value="Coordinator">Coordinator</option>
+                              <option value="Staff">Staff</option>
+                            </Form.Control>
+                            <span className="validation-errors">
+                              {errors.userRole}
+                            </span>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                              type="name"
+                              name="name"
+                              onChange={handleChange}
+                              value={values.name}
+                            />
+                            <span className="validation-errors">
+                              {errors.name}
+                            </span>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control
+                              type="email"
+                              name="email"
+                              onChange={handleChange}
+                              value={values.email}
+                            />
+                            <span className="validation-errors">
+                              {errors.email}
+                            </span>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Label>Date of Birth</Form.Label>
+                            <Form.Control
+                              type="date"
+                              name="dob"
+                              onChange={handleChange}
+                              value={values.dob}
+                            />
+                            <span className="validation-errors">
+                              {errors.dob}
+                            </span>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Label>Gender</Form.Label>
+                            <Form.Control
+                              as="select"
+                              name="gender"
+                              onChange={handleChange}
+                              value={values.gender}
+                            >
+                              <option value="--">--</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Other">Other</option>
+                            </Form.Control>
+                            <span className="validation-errors">
+                              {errors.gender}
+                            </span>
+                          </Form.Group>
+
+                          <Form.Group>
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control
+                              type="text"
+                              name="address"
+                              onChange={handleChange}
+                              value={values.address}
+                            />
+                            <span className="validation-errors">
+                              {errors.address}
+                            </span>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Label>Phone</Form.Label>
+                            <Form.Control
+                              type="text"
+                              name="phone"
+                              onChange={handleChange}
+                              value={values.phone}
+                            />
+                            <span className="validation-errors">
+                              {errors.phone}
+                            </span>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Label>Website</Form.Label>
+                            <Form.Control
+                              type="text"
+                              name="website"
+                              onChange={handleChange}
+                              value={values.website}
+                            />
+                            <span className="validation-errors">
+                              {errors.website}
+                            </span>
+                          </Form.Group>
+
+                          <Form.Group>
+                            <Form.Label>About Me</Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              rows="3"
+                              name="aboutMe"
+                              value={values.aboutMe}
+                              onChange={handleChange}
+                            />
+                            <span className="validation-errors">
+                              {errors.aboutMe}
+                            </span>
+                          </Form.Group>
+                          <Button
+                            type="submit"
+                            className="btn-block reg-btn-ftr"
                           >
-                            <option value="--">--</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                          </Form.Control>
-                          <span className="validation-errors">
-                            {errors.gender}
-                          </span>
-                        </Form.Group>
-
-                        <Form.Group>
-                          <Form.Label>Address</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="address"
-                            onChange={handleChange}
-                            value={values.address}
-                          />
-                          <span className="validation-errors">
-                            {errors.address}
-                          </span>
-                        </Form.Group>
-                        <Form.Group>
-                          <Form.Label>Phone</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="phone"
-                            onChange={handleChange}
-                            value={values.phone}
-                          />
-                          <span className="validation-errors">
-                            {errors.phone}
-                          </span>
-                        </Form.Group>
-                        <Form.Group>
-                          <Form.Label>Website</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="website"
-                            onChange={handleChange}
-                            value={values.website}
-                          />
-                          <span className="validation-errors">
-                            {errors.website}
-                          </span>
-                        </Form.Group>
-
-                        <Form.Group>
-                          <Form.Label>About Me</Form.Label>
-                          <Form.Control
-                            as="textarea"
-                            rows="3"
-                            name="aboutMe"
-                            value={values.aboutMe}
-                            onChange={handleChange}
-                          />
-                          <span className="validation-errors">
-                            {errors.aboutMe}
-                          </span>
-                        </Form.Group>
-                        <Button type="submit" className="btn-block reg-btn-ftr">
-                          Update Profile
-                        </Button>
-                      </Form>
-                    )}
-                  </Formik>
+                            Update Profile
+                          </Button>
+                        </Form>
+                      )}
+                    </Formik>
+                  </Fragment>
                 )}
 
                 <div className="rec-log">

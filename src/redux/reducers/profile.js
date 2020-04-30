@@ -15,6 +15,7 @@ const initialState = {
   userRole: "",
   editProfile: false,
   viewProfile: true,
+  avatarUrl: "",
   updated: false,
 };
 
@@ -34,6 +35,7 @@ export default (state = initialState, action) => {
         phone,
         website,
         userRole,
+        avatarUrl,
       } = action.payload;
       return {
         ...state,
@@ -48,6 +50,7 @@ export default (state = initialState, action) => {
         phone,
         website,
         userRole,
+        avatarUrl,
       };
     }
     case types.GET_MY_PROFILE_FAILURE: {
@@ -86,6 +89,7 @@ export default (state = initialState, action) => {
         phone,
         website,
         userRole,
+        avatarUrl,
         updated,
       } = action.payload;
       return {
@@ -101,6 +105,7 @@ export default (state = initialState, action) => {
         phone,
         website,
         userRole,
+        avatarUrl,
         updated,
       };
     }

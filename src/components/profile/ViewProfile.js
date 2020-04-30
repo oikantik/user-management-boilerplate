@@ -13,6 +13,8 @@ const ViewProfile = ({
   phone,
   website,
   userRole,
+  avatarUrl,
+  baseAvatarURI,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -36,7 +38,11 @@ const ViewProfile = ({
                 >
                   <div className="pro-img">
                     <img
-                      src={temporaryAvatar}
+                      src={
+                        avatarUrl === ""
+                          ? temporaryAvatar
+                          : baseAvatarURI + "/" + avatarUrl
+                      }
                       alt="avatar"
                       className="img-fluid"
                     />

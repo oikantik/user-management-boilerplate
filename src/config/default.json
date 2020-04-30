@@ -4,5 +4,6 @@
   "getMembersListURI": "http://localhost:5000/members",
   "getMembersProfileURI": "http://localhost:5000/members/profile",
   "setMembersProfileURI": "http://localhost:5000/members/update-profile",
-  "getProfileURI": "http://localhost:5000/my-profile"
+  "getProfileURI": "http://localhost:5000/my-profile",
+  "baseAvatarURI": "http://localhost:5000"
 }

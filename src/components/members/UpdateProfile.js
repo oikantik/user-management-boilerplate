@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import Success from "./Success";
+import ProfilePhoto from "../common/ProfilePhoto";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -37,6 +38,9 @@ const UpdateProfile = ({
   phone,
   website,
   userRole,
+  avatarUrl,
+  baseAvatarURI,
+  temporaryAvatar,
   updated,
   error,
   handleMembersLinkClick,
@@ -86,10 +90,39 @@ const UpdateProfile = ({
                       phone,
                       website,
                       userRole,
+                      avatar: null,
                     }}
                   >
-                    {({ handleSubmit, handleChange, errors, values }) => (
+                    {({
+                      handleSubmit,
+                      handleChange,
+                      errors,
+                      values,
+                      setFieldValue,
+                    }) => (
                       <Form onSubmit={handleSubmit}>
+                        <Row
+                          className="align-items-center"
+                          style={{ marginBottom: "20px" }}
+                        >
+                          <Col sm={3}>
+                            <div className="pro-img">
+                              <img
+                                src={
+                                  avatarUrl === "" ||
+                                  typeof avatarUrl === "undefined"
+                                    ? temporaryAvatar
+                                    : baseAvatarURI + "/" + avatarUrl
+                                }
+                                alt="avatar"
+                                className="img-fluid"
+                              />
+                            </div>
+                          </Col>
+                          <Col>
+                            <ProfilePhoto setFieldValue={setFieldValue} />
+                          </Col>
+                        </Row>
                         <Form.Group>
                           <Form.Label>User Role</Form.Label>
                           <Form.Control

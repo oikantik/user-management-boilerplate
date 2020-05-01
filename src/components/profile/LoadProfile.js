@@ -10,6 +10,7 @@ import {
 import UpdateSingleProfile from "./UpdateProfile";
 import ViewProfile from "./ViewProfile";
 
+import temporaryAvatar from "../../images/male-avatar1.png";
 import { baseAvatarURI } from "../../config/default.json";
 
 const LoadProfile = ({
@@ -50,6 +51,7 @@ const LoadProfile = ({
           userRole={userRole}
           avatarUrl={avatarUrl}
           baseAvatarURI={baseAvatarURI}
+          temporaryAvatar={temporaryAvatar}
           handleLoadEditProfile={handleLoadEditProfile}
         />
       ) : (
@@ -66,6 +68,7 @@ const LoadProfile = ({
           editProfile={editProfile}
           avatarUrl={avatarUrl}
           baseAvatarURI={baseAvatarURI}
+          temporaryAvatar={temporaryAvatar}
           handleLoadViewProfile={handleLoadViewProfile}
           handleUpdateProfile={handleUpdateProfile}
           updated={updated}

@@ -21,6 +21,7 @@ const initialState = {
     phone: "",
     website: "",
     userRole: "",
+    avatarUrl: "",
   },
 };
 
@@ -65,6 +66,7 @@ export default (state = initialState, action) => {
         phone,
         website,
         userRole,
+        avatarUrl,
       } = action.payload;
       return {
         ...state,
@@ -80,6 +82,7 @@ export default (state = initialState, action) => {
           phone,
           website,
           userRole,
+          avatarUrl,
         },
       };
     }
@@ -115,6 +118,7 @@ export default (state = initialState, action) => {
         phone,
         website,
         userRole,
+        avatarUrl,
       } = action.payload;
       return {
         ...state,
@@ -131,6 +135,7 @@ export default (state = initialState, action) => {
           phone,
           website,
           userRole,
+          avatarUrl,
         },
       };
     }
@@ -160,6 +165,7 @@ export default (state = initialState, action) => {
         phone,
         website,
         userRole,
+        avatarUrl,
       } = action.payload;
       return {
         ...state,
@@ -175,6 +181,7 @@ export default (state = initialState, action) => {
           phone,
           website,
           userRole,
+          avatarUrl,
         },
       };
     }

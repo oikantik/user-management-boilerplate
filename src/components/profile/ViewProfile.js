@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Col, Row, Button } from "react-bootstrap";
-import temporaryAvatar from "../../images/male-avatar1.png";
 
 const ViewProfile = ({
   handleLoadEditProfile,
@@ -15,6 +14,7 @@ const ViewProfile = ({
   userRole,
   avatarUrl,
   baseAvatarURI,
+  temporaryAvatar,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,7 +39,7 @@ const ViewProfile = ({
                   <div className="pro-img">
                     <img
                       src={
-                        avatarUrl === ""
+                        avatarUrl === "" || typeof avatarUrl === "undefined"
                           ? temporaryAvatar
                           : baseAvatarURI + "/" + avatarUrl
                       }

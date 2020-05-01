@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 import Success from "./Success";
 import ProfilePhoto from "../common/ProfilePhoto";
 
-import temporaryAvatar from "../../images/male-avatar1.png";
-
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const validationSchema = Yup.object({
@@ -42,6 +40,7 @@ const UpdateSingleProfile = ({
   userRole,
   avatarUrl,
   baseAvatarURI,
+  temporaryAvatar,
   updated,
   error,
   handleLoadViewProfile,
@@ -99,7 +98,8 @@ const UpdateSingleProfile = ({
                               <div className="pro-img">
                                 <img
                                   src={
-                                    avatarUrl === ""
+                                    avatarUrl === "" ||
+                                    typeof avatarUrl === "undefined"
                                       ? temporaryAvatar
                                       : baseAvatarURI + "/" + avatarUrl
                                   }

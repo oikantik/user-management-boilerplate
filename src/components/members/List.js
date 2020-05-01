@@ -7,6 +7,9 @@ import ListHeader from "./ListHeader";
 import ListFooter from "./ListFooter";
 import ViewProfile from "./ViewProfile";
 import UpdateProfile from "./UpdateProfile";
+import temporaryAvatar from "../../images/male-avatar1.png";
+import { baseAvatarURI } from "../../config/default.json";
+
 import {
   getMembers,
   editMemberProfile,
@@ -27,6 +30,7 @@ const MembersList = ({
   phone,
   website,
   userRole,
+  avatarUrl,
   getCurrentProfileSuccess,
   editCurrentProfileSuccess,
   viewCurrentProfile,
@@ -62,6 +66,9 @@ const MembersList = ({
                 phone={phone}
                 website={website}
                 userRole={userRole}
+                avatarUrl={avatarUrl}
+                baseAvatarURI={baseAvatarURI}
+                temporaryAvatar={temporaryAvatar}
                 handleLoadEditProfile={handleLoadEditProfile}
                 handleMembersLinkClick={handleMembersLinkClick}
               />
@@ -77,8 +84,11 @@ const MembersList = ({
                 phone={phone}
                 website={website}
                 userRole={userRole}
+                avatarUrl={avatarUrl}
+                baseAvatarURI={baseAvatarURI}
                 updated={updatedCurrentProfile}
                 handleLoadViewProfile={handleLoadViewProfile}
+                temporaryAvatar={temporaryAvatar}
                 handleMembersLinkClick={handleMembersLinkClick}
                 handleUpdateProfile={handleUpdateProfile}
               />
@@ -137,6 +147,7 @@ const mapDispatchToProps = (dispatch) => {
         phone: e.phone,
         userRole: e.userRole,
         address: e.address,
+        avatar: e.avatar,
       };
       dispatch(setMemberProfile(payload));
       return false;
@@ -155,6 +166,7 @@ const mapStateToProps = (state) => {
     phone,
     website,
     userRole,
+    avatarUrl,
   } = state.members.currentMember;
   const {
     getCurrentProfileSuccess,
@@ -178,6 +190,7 @@ const mapStateToProps = (state) => {
     phone,
     website,
     userRole,
+    avatarUrl,
     getCurrentProfileSuccess,
     editCurrentProfileSuccess,
     viewCurrentProfile,

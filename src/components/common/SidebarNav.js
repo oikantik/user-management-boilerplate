@@ -1,14 +1,23 @@
 import React from "react";
 import { Col, Navbar, Nav } from "react-bootstrap";
 import Logo from "../../images/LOGO.png";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMembers } from "../../redux/actions/members";
 import { loadViewProfile } from "../../redux/actions/profile";
+import axios from "axios";
+import { logoutUserURI } from "../../config/default.json";
 const SidebarNav = ({ handleMembersLinkClick, handleLoadViewProfile }) => {
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem("token");
-    return false;
+    try {
+      axios.defaults.withCredentials = true;
+      await axios.get(logoutUserURI);
+
+      return <Redirect to="/" />;
+    } catch (error) {
+      return <Redirect to="/" />;
+    }
   };
   return (
     <Col

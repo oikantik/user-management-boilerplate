@@ -53,6 +53,11 @@ const SidebarNav = ({ handleMembersLinkClick, handleLoadViewProfile }) => {
                   </Link>
                 </Nav.Item>
                 <Nav.Item as="li">
+                  <Link to="/manage-events" className="dropdown-item">
+                    Manage Events
+                  </Link>
+                </Nav.Item>
+                <Nav.Item as="li">
                   <Link
                     to="/members"
                     className="dropdown-item"

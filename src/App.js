@@ -8,6 +8,9 @@ import Register from "./pages/Register";
 import Members from "./pages/Members";
 import PrivateRoute from "./components/common/PrivateRoute";
 import MyProfile from "./pages/MyProfile";
+import CreateEvent from "./pages/Events/Create";
+import ManageEvents from "./pages/Events/Manage";
+import EditEvents from "./pages/Events/Edit";
 
 function App() {
   return (
@@ -25,6 +28,15 @@ function App() {
           </PrivateRoute>
           <PrivateRoute exact path="/my-profile">
             <MyProfile />
+          </PrivateRoute>
+          <PrivateRoute exact path="/edit-event">
+            <EditEvents />
+          </PrivateRoute>
+          <PrivateRoute exact path="/create-event">
+            <CreateEvent />
+          </PrivateRoute>
+          <PrivateRoute exact path="/manage-events">
+            <ManageEvents />
           </PrivateRoute>
         </Switch>
       </Router>

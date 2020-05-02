@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col, Row } from "react-bootstrap";
+import { Card, Col, Row, Button } from "react-bootstrap";
 
 const ManageEvent = () => {
   return (
@@ -10,15 +10,20 @@ const ManageEvent = () => {
       >
         <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
           <Card.Body>
-            <p>All Events Will be here.</p>
-            <p>There will be a button to create events</p>
-            <p>There will be a button to find members</p>
-            <p>A button to see the preview of event page</p>
-            <p>A button to see the actual url</p>
-            <p>
-              It will show how many unique visits, how many signed up (if a
-              contact is deleted, make sure to remove that from count
-            </p>
+            <Card.Title>
+              Event Title
+              <Button href="/edit-event" className="float-right">
+                Edit Event
+              </Button>
+            </Card.Title>
+
+            <Card.Text>
+              <p>Event Creation Date</p>
+              <p>View Registrants</p>
+              <p>View Appointment Page</p>
+              <p>Preview Appointment Page</p>
+              <p>unique visits: 0 Registrants: 0</p>
+            </Card.Text>
           </Card.Body>
         </Card>
       </Col>

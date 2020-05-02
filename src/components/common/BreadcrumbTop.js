@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "react-bootstrap";
 
 const BreadcrumbTop = ({ currentPage, currentLink }) => {
   return (
@@ -26,6 +27,14 @@ const BreadcrumbTop = ({ currentPage, currentLink }) => {
                 {currentPage}
               </Link>
             </p>
+          </div>
+          <div class="header-rit-dash">
+            <Button
+              href="/create-event"
+              style={{ backgroundColor: "#009587", borderColor: "#009587" }}
+            >
+              Create Event
+            </Button>
           </div>
         </div>
 

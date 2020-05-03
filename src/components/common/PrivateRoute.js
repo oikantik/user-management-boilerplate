@@ -2,11 +2,27 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-const PrivateRoute = ({ children, isAuth, ...rest }) => {
+const renderMergedProps = (component, ...rest) => {
+  const finalProps = Object.assign({}, ...rest);
+  return React.createElement(component, finalProps);
+};
+
+const PrivateRoute = ({ component, isAuth, redirectTo, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={() => (!isAuth ? <Redirect exact to="/" /> : children)}
+      render={(routeProps) => {
+        return isAuth ? (
+          renderMergedProps(component, routeProps, rest)
+        ) : (
+          <Redirect
+            to={{
+              pathname: redirectTo,
+              state: { from: routeProps.location },
+            }}
+          />
+        );
+      }}
     />
   );
 };

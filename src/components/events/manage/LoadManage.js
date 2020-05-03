@@ -18,12 +18,29 @@ const ManageEvent = () => {
             </Card.Title>
 
             <Card.Text>
-              <p>Event Creation Date</p>
-              <p>View Registrants</p>
-              <p>View Appointment Page</p>
-              <p>Preview Appointment Page</p>
-              <p>Delete Button</p>
-              <p>unique visits: 0 Registrants: 0</p>
+              <span>
+                Event Creation Date
+                <br />
+              </span>
+              <span>
+                View Registrants
+                <br />
+              </span>
+              <span>
+                View Appointment Page
+                <br />
+              </span>
+              <span>
+                Preview Appointment Page
+                <br />
+              </span>
+              <span>
+                Delete Button
+                <br />
+              </span>
+              <span>
+                unique visits: 0 Registrants: 0<br />
+              </span>
             </Card.Text>
           </Card.Body>
         </Card>

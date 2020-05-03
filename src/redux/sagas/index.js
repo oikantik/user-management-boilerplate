@@ -8,7 +8,7 @@ import {
   watchSetMemberProfile,
 } from "./members";
 import { watchGetProfile, watchSetProfile } from "./profile";
-import { watchCreateEvent } from "./events";
+import { watchCreateEvent, watchGetEditEvent, watchEditEvent } from "./events";
 import { watchGetPublicSchedule } from "./scheduler";
 
 export default function* () {
@@ -21,5 +21,7 @@ export default function* () {
   yield fork(watchGetProfile);
   yield fork(watchSetProfile);
   yield fork(watchCreateEvent);
+  yield fork(watchGetEditEvent);
+  yield fork(watchEditEvent);
   yield fork(watchGetPublicSchedule);
 }

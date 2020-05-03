@@ -6,3 +6,17 @@ export const createNewEvent = (payload) => {
     payload: payload,
   };
 };
+
+export const getEditEvent = (payload) => {
+  return {
+    type: types.GET_EDIT_EVENT_DETAILS,
+    payload: payload,
+  };
+};
+
+export const editEvent = (payload) => {
+  return {
+    type: types.EDIT_EVENT_DETAILS,
+    payload: payload,
+  };
+};

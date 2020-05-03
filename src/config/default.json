@@ -8,5 +8,7 @@
   "getProfileURI": "http://localhost:5000/my-profile",
   "baseAvatarURI": "http://localhost:5000",
   "createEventURI": "http://localhost:5000/events/create",
+  "getEditEventDetailsURI": "http://localhost:5000/events/get-one/details",
+  "editEventDetailsURI": "http://localhost:5000/events/update/details",
   "getPublicSchedulerURI": "http://localhost:5000/public/schedule"
 }

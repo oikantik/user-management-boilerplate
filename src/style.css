@@ -21,6 +21,27 @@ h6 {
   font-family: "Ubuntu", sans-serif;
 }
 
+/*---------- Green Button & Text -------*/
+.grn-btn {
+  background-color: rgb(0, 149, 135) !important;
+  border-color: rgb(0, 149, 135) !important;
+}
+
+.grn-txt-btn {
+  color: rgb(0, 149, 135) !important;
+}
+
+.grn-txt-sml-s-dt {
+  color: rgb(0, 149, 135) !important;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /*---------- Avatar Upload ------------*/
 
 .avatar-upload {

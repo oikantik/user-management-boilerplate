@@ -24,21 +24,33 @@ function App() {
           <Route exact path="/register">
             <Register />
           </Route>
-          <PrivateRoute exact path="/members">
-            <Members />
-          </PrivateRoute>
-          <PrivateRoute exact path="/my-profile">
-            <MyProfile />
-          </PrivateRoute>
-          <PrivateRoute exact path="/edit-event">
-            <EditEvents />
-          </PrivateRoute>
-          <PrivateRoute exact path="/create-event">
-            <CreateEvent />
-          </PrivateRoute>
-          <PrivateRoute exact path="/manage-events">
-            <ManageEvents />
-          </PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/members"
+            component={Members}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/my-profile"
+            component={MyProfile}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/edit-event/:editorId"
+            redirectTo="/"
+            component={EditEvents}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/create-event"
+            redirectTo="/"
+            component={CreateEvent}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/manage-events"
+            component={ManageEvents}
+          ></PrivateRoute>
           <Route exact path="/schedule/:eventId" component={SignupPage}></Route>
         </Switch>
       </Router>

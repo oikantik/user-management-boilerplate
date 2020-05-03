@@ -11,6 +11,7 @@ import MyProfile from "./pages/MyProfile";
 import CreateEvent from "./pages/Events/Create";
 import ManageEvents from "./pages/Events/Manage";
 import EditEvents from "./pages/Events/Edit";
+import SignupPage from "./pages/Schedule/SignupPage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <PrivateRoute exact path="/manage-events">
             <ManageEvents />
           </PrivateRoute>
+          <Route exact path="/schedule/:eventId" component={SignupPage}></Route>
         </Switch>
       </Router>
     </Provider>

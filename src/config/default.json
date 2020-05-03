@@ -7,5 +7,6 @@
   "setMembersProfileURI": "http://localhost:5000/members/update-profile",
   "getProfileURI": "http://localhost:5000/my-profile",
   "baseAvatarURI": "http://localhost:5000",
-  "createEventURI": "http://localhost:5000/events/create"
+  "createEventURI": "http://localhost:5000/events/create",
+  "getPublicSchedulerURI": "http://localhost:5000/public/schedule"
 }

@@ -12,7 +12,7 @@ const ManageEvent = () => {
           <Card.Body>
             <Card.Title>
               Event Title
-              <Button href="/edit-event" className="float-right">
+              <Button href="/edit-event:eventId" className="float-right">
                 Edit Event
               </Button>
             </Card.Title>
@@ -22,6 +22,7 @@ const ManageEvent = () => {
               <p>View Registrants</p>
               <p>View Appointment Page</p>
               <p>Preview Appointment Page</p>
+              <p>Delete Button</p>
               <p>unique visits: 0 Registrants: 0</p>
             </Card.Text>
           </Card.Body>

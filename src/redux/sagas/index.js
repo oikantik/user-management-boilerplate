@@ -8,6 +8,7 @@ import {
   watchSetMemberProfile,
 } from "./members";
 import { watchGetProfile, watchSetProfile } from "./profile";
+import { watchCreateEvent } from "./events";
 
 export default function* () {
   yield fork(register);
@@ -18,4 +19,5 @@ export default function* () {
   yield fork(watchSetMemberProfile);
   yield fork(watchGetProfile);
   yield fork(watchSetProfile);
+  yield fork(watchCreateEvent);
 }

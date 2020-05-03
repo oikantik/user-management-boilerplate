@@ -3,5 +3,6 @@ import login from "./login";
 import register from "./register";
 import members from "./members";
 import profile from "./profile";
+import events from "./events";
 
-export default combineReducers({ login, register, members, profile });
+export default combineReducers({ login, register, members, profile, events });

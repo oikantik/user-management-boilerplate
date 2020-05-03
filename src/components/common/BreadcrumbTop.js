@@ -28,7 +28,7 @@ const BreadcrumbTop = ({ currentPage, currentLink }) => {
               </Link>
             </p>
           </div>
-          <div class="header-rit-dash">
+          <div className="header-rit-dash">
             <Button
               href="/create-event"
               style={{ backgroundColor: "#009587", borderColor: "#009587" }}

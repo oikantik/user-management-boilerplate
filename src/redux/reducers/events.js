@@ -3,6 +3,7 @@ import * as types from "../constants";
 const initialState = {
   loading: false,
   success: false,
+  allEvents: [],
   event: {
     title: "",
     description: "",
@@ -101,7 +102,28 @@ export default (state = initialState, action) => {
         error: action.payload.message,
         event: { updated: false },
       };
-
+    /* Get all the events */
+    case types.GET_ALL_EVENTS:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.GET_ALL_EVENTS_SUCCESSFUL: {
+      console.log(action.payload);
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        allEvents: action.payload.events,
+      };
+    }
+    case types.GET_ALL_EVENTS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload.message,
+      };
     default:
       return state;
   }

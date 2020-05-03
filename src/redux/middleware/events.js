@@ -3,6 +3,7 @@ import {
   createEventURI,
   getEditEventDetailsURI,
   editEventDetailsURI,
+  getAllEventsURI,
 } from "../../config/default.json";
 
 export const createEvent = async (payload) => {
@@ -47,5 +48,19 @@ export const editEvent = async (payload) => {
     success: response.data.success,
     message: response.data.message,
     event: response.data.event,
+  };
+};
+
+export const getEvents = async () => {
+  axios.defaults.withCredentials = true;
+  const response = await axios.get(getAllEventsURI, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return {
+    success: response.data.success,
+    message: response.data.message,
+    events: response.data.events,
   };
 };

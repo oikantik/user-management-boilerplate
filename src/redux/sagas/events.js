@@ -1,6 +1,11 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import * as types from "../constants";
-import { createEvent, getEditEvent, editEvent } from "../middleware/events";
+import {
+  createEvent,
+  getEditEvent,
+  editEvent,
+  getEvents,
+} from "../middleware/events";
 
 function* createTheEvent(action) {
   try {
@@ -47,6 +52,21 @@ function* getEditTheEvent(action) {
   }
 }
 
+function* getAllTheEvents(action) {
+  try {
+    const payload = yield call(getEvents, action.payload);
+    yield put({
+      type: types.GET_ALL_EVENTS_SUCCESSFUL,
+      payload,
+    });
+  } catch (err) {
+    yield put({
+      type: types.GET_ALL_EVENTS_FAILURE,
+      paylod: err.response.data,
+    });
+  }
+}
+
 export function* watchCreateEvent() {
   yield takeLatest(types.CREATE_NEW_EVENT, createTheEvent);
 }
@@ -56,4 +76,7 @@ export function* watchGetEditEvent() {
 }
 export function* watchEditEvent() {
   yield takeLatest(types.EDIT_EVENT_DETAILS, editTheEvent);
+}
+export function* watchGetEvents() {
+  yield takeLatest(types.GET_ALL_EVENTS, getAllTheEvents);
 }

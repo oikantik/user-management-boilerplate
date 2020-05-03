@@ -20,3 +20,9 @@ export const editEvent = (payload) => {
     payload: payload,
   };
 };
+
+export const getEvents = () => {
+  return {
+    type: types.GET_ALL_EVENTS,
+  };
+};

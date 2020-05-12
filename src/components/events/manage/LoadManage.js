@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment } from "react";
 import { Card, Col, Row, Button, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { getEvents } from "../../../redux/actions/events";
@@ -51,7 +52,9 @@ const ManageEvent = ({ handleGetAllEvents, events, loading }) => {
                       <br />
                     </span>
                     <span>
-                      View Appointment Page
+                      <Link to={"/schedule/" + event.eventId} target="_blank">
+                        View Appointment Page
+                      </Link>
                       <br />
                     </span>
                     <span>

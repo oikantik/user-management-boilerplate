@@ -21,6 +21,12 @@ h6 {
   font-family: "Ubuntu", sans-serif;
 }
 
+/*---------- Custom select availability --*/
+
+.avl-slct {
+  min-height: 100vh;
+}
+
 /*---------- Green Button & Text -------*/
 .grn-btn {
   background-color: rgb(0, 149, 135) !important;

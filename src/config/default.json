@@ -9,7 +9,9 @@
   "baseAvatarURI": "http://localhost:5000",
   "createEventURI": "http://localhost:5000/events/create",
   "getEditEventDetailsURI": "http://localhost:5000/events/get-one/details",
+  "getEditEventScheduleURI": "http://localhost:5000/events/get-one/schedule",
   "editEventDetailsURI": "http://localhost:5000/events/update/details",
   "getAllEventsURI": "http://localhost:5000/events",
-  "getPublicSchedulerURI": "http://localhost:5000/public/schedule"
+  "getPublicSchedulerURI": "http://localhost:5000/public/schedule",
+  "editEventScheduleURI": "http://localhost:5000/events/update/schedule"
 }

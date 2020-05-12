@@ -7,16 +7,30 @@ export const createNewEvent = (payload) => {
   };
 };
 
-export const getEditEvent = (payload) => {
+export const getEditEventDetails = (payload) => {
   return {
     type: types.GET_EDIT_EVENT_DETAILS,
     payload: payload,
   };
 };
 
-export const editEvent = (payload) => {
+export const editEventDetails = (payload) => {
   return {
     type: types.EDIT_EVENT_DETAILS,
+    payload: payload,
+  };
+};
+
+export const getEditEventSchedule = (payload) => {
+  return {
+    type: types.GET_EDIT_EVENT_SCHEDULE,
+    payload: payload,
+  };
+};
+
+export const editEventSchedule = (payload) => {
+  return {
+    type: types.EDIT_EVENT_SCHEDULE,
     payload: payload,
   };
 };
@@ -24,5 +38,17 @@ export const editEvent = (payload) => {
 export const getEvents = () => {
   return {
     type: types.GET_ALL_EVENTS,
+  };
+};
+
+export const cancelEditSchedule = () => {
+  return {
+    type: types.CANCEL_EDIT_EVENT_SCHEDULE,
+  };
+};
+
+export const cancelEditDetails = () => {
+  return {
+    type: types.CANCEL_EDIT_EVENT_DETAILS,
   };
 };

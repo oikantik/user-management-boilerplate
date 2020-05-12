@@ -4,11 +4,11 @@ import { Form, Button } from "react-bootstrap";
 const EditEventPageForm = () => {
   return (
     <Form>
-      <p>
+      <span>
         Fields to Collect
         <br />
         Redirect After Schedule
-      </p>
+      </span>
 
       <Button variant="primary" type="submit">
         Submit

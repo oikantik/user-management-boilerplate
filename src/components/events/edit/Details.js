@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -25,12 +25,9 @@ const EditEventDetailsForm = ({
   eventId,
   loading,
   updated,
+  editingDetails,
+  handleCancelEditDetails,
 }) => {
-  const [editingDetails, setEditingDetails] = useState(false);
-  useEffect(() => {
-    updated && setEditingDetails(false);
-  }, [updated]);
-
   return (
     <Fragment>
       <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
@@ -51,7 +48,6 @@ const EditEventDetailsForm = ({
                     className="float-right grn-btn"
                     onClick={() => {
                       handleShowEditEvent(editorId);
-                      setEditingDetails(true);
                     }}
                     disabled={loading}
                   >
@@ -63,7 +59,7 @@ const EditEventDetailsForm = ({
           </Card.Title>
 
           {editingDetails && !loading && (
-            <Card.Text>
+            <div>
               <Formik
                 validationSchema={validationSchema}
                 onSubmit={handleEditEvent}
@@ -137,7 +133,7 @@ const EditEventDetailsForm = ({
                     </Button>
                     <Button
                       variant="link"
-                      onClick={() => setEditingDetails(false)}
+                      onClick={handleCancelEditDetails}
                       className="grn-txt-btn"
                       disabled={loading}
                     >
@@ -146,7 +142,7 @@ const EditEventDetailsForm = ({
                   </Form>
                 )}
               </Formik>
-            </Card.Text>
+            </div>
           )}
         </Card.Body>
       </Card>

@@ -10,8 +10,10 @@ const initialState = {
     eventId: "",
     editorId: "",
     updated: false,
+    updatedSchedule: false,
   },
-
+  editingSchedule: false,
+  editingDetails: false,
   error: "",
 };
 
@@ -49,6 +51,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        editingSchedule: false,
+        editingDetails: false,
       };
     case types.GET_EDIT_EVENT_DETAILS_SUCCESSFUL: {
       const { title, description, eventId, editorId } = action.payload.event;
@@ -56,6 +60,8 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         success: true,
+        editingSchedule: false,
+        editingDetails: true,
         event: {
           title,
           description,
@@ -102,6 +108,121 @@ export default (state = initialState, action) => {
         error: action.payload.message,
         event: { updated: false },
       };
+
+    /* get edit event schedule */
+    case types.GET_EDIT_EVENT_SCHEDULE:
+      return {
+        ...state,
+        loading: true,
+        editingSchedule: false,
+        editingDetails: false,
+      };
+    case types.GET_EDIT_EVENT_SCHEDULE_SUCCESSFUL: {
+      const {
+        monday,
+        tuesday,
+        wednesday,
+        thursday,
+        friday,
+        saturday,
+        sunday,
+      } = action.payload.event.availableDays;
+      const {
+        startDate,
+        endDate,
+        timezone,
+        meetingLength,
+        spreadLength,
+        blackoutDate,
+      } = action.payload.event;
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        editingSchedule: true,
+        editingDetails: false,
+        event: {
+          startDate,
+          endDate,
+          timezone,
+          meetingLength,
+          spreadLength,
+          blackoutDate,
+          monday,
+          tuesday,
+          wednesday,
+          thursday,
+          friday,
+          saturday,
+          sunday,
+        },
+      };
+    }
+    case types.GET_EDIT_EVENT_SCHEDULE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload.message,
+      };
+
+    /*  edit event schedule */
+    case types.EDIT_EVENT_SCHEDULE:
+      return {
+        ...state,
+        loading: true,
+        event: { updated: false },
+      };
+    case types.EDIT_EVENT_SCHEDULE_SUCCESSFUL: {
+      const {
+        monday,
+        tuesday,
+        wednesday,
+        thursday,
+        friday,
+        saturday,
+        sunday,
+      } = action.payload.event.availableDays;
+      const {
+        startDate,
+        endDate,
+        timezone,
+        meetingLength,
+        spreadLength,
+        blackoutDate,
+      } = action.payload.event;
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        editingSchedule: false,
+        event: {
+          startDate,
+          endDate,
+          timezone,
+          meetingLength,
+          spreadLength,
+          blackoutDate,
+          monday,
+          tuesday,
+          wednesday,
+          thursday,
+          friday,
+          saturday,
+          sunday,
+          updatedSchedule: true,
+        },
+      };
+    }
+    case types.EDIT_EVENT_SCHEDULE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload.message,
+        event: { updatedSchedule: false },
+      };
+
     /* Get all the events */
     case types.GET_ALL_EVENTS:
       return {
@@ -123,6 +244,22 @@ export default (state = initialState, action) => {
         loading: false,
         success: false,
         error: action.payload.message,
+      };
+
+    /* Handle cancels */
+
+    case types.CANCEL_EDIT_EVENT_SCHEDULE:
+      return {
+        ...state,
+        editingSchedule: false,
+        updatedSchedule: false,
+      };
+
+    case types.CANCEL_EDIT_EVENT_DETAILS:
+      return {
+        ...state,
+        editingDetails: false,
+        updated: false,
       };
     default:
       return state;

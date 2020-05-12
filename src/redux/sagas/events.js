@@ -2,9 +2,11 @@ import { put, call, takeLatest } from "redux-saga/effects";
 import * as types from "../constants";
 import {
   createEvent,
-  getEditEvent,
-  editEvent,
+  getEditEventDetails,
+  editEventDetails,
   getEvents,
+  editEventSchedule,
+  getEditEventSchedule,
 } from "../middleware/events";
 
 function* createTheEvent(action) {
@@ -24,7 +26,7 @@ function* createTheEvent(action) {
 
 function* editTheEvent(action) {
   try {
-    const payload = yield call(editEvent, action.payload);
+    const payload = yield call(editEventDetails, action.payload);
     yield put({
       type: types.EDIT_EVENT_DETAILS_SUCCESSFUL,
       payload,
@@ -37,9 +39,24 @@ function* editTheEvent(action) {
   }
 }
 
+function* editTheEventSchedule(action) {
+  try {
+    const payload = yield call(editEventSchedule, action.payload);
+    yield put({
+      type: types.EDIT_EVENT_SCHEDULE_SUCCESSFUL,
+      payload,
+    });
+  } catch (err) {
+    yield put({
+      type: types.EDIT_EVENT_SCHEDULE_FAILURE,
+      paylod: err.response.data,
+    });
+  }
+}
+
 function* getEditTheEvent(action) {
   try {
-    const payload = yield call(getEditEvent, action.payload);
+    const payload = yield call(getEditEventDetails, action.payload);
     yield put({
       type: types.GET_EDIT_EVENT_DETAILS_SUCCESSFUL,
       payload,
@@ -47,6 +64,21 @@ function* getEditTheEvent(action) {
   } catch (err) {
     yield put({
       type: types.GET_EDIT_EVENT_DETAILS_FAILURE,
+      paylod: err.response.data,
+    });
+  }
+}
+
+function* getEditTheEventSchedule(action) {
+  try {
+    const payload = yield call(getEditEventSchedule, action.payload);
+    yield put({
+      type: types.GET_EDIT_EVENT_SCHEDULE_SUCCESSFUL,
+      payload,
+    });
+  } catch (err) {
+    yield put({
+      type: types.GET_EDIT_EVENT_SCHEDULE_FAILURE,
       paylod: err.response.data,
     });
   }
@@ -77,6 +109,14 @@ export function* watchGetEditEvent() {
 export function* watchEditEvent() {
   yield takeLatest(types.EDIT_EVENT_DETAILS, editTheEvent);
 }
+
+export function* watchEditEventSchedule() {
+  yield takeLatest(types.EDIT_EVENT_SCHEDULE, editTheEventSchedule);
+}
+export function* watchGetEditEventSchedule() {
+  yield takeLatest(types.GET_EDIT_EVENT_SCHEDULE, getEditTheEventSchedule);
+}
+
 export function* watchGetEvents() {
   yield takeLatest(types.GET_ALL_EVENTS, getAllTheEvents);
 }

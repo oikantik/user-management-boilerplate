@@ -4,6 +4,8 @@ import {
   getEditEventDetailsURI,
   editEventDetailsURI,
   getAllEventsURI,
+  editEventScheduleURI,
+  getEditEventScheduleURI,
 } from "../../config/default.json";
 
 export const createEvent = async (payload) => {
@@ -21,7 +23,7 @@ export const createEvent = async (payload) => {
   };
 };
 
-export const getEditEvent = async (payload) => {
+export const getEditEventDetails = async (payload) => {
   axios.defaults.withCredentials = true;
   const response = await axios.post(getEditEventDetailsURI, {
     data: { editorId: payload },
@@ -36,9 +38,39 @@ export const getEditEvent = async (payload) => {
   };
 };
 
-export const editEvent = async (payload) => {
+export const editEventDetails = async (payload) => {
   axios.defaults.withCredentials = true;
   const response = await axios.post(editEventDetailsURI, {
+    data: payload,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return {
+    success: response.data.success,
+    message: response.data.message,
+    event: response.data.event,
+  };
+};
+
+export const getEditEventSchedule = async (payload) => {
+  axios.defaults.withCredentials = true;
+  const response = await axios.post(getEditEventScheduleURI, {
+    data: { editorId: payload },
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return {
+    success: response.data.success,
+    message: response.data.message,
+    event: response.data.event,
+  };
+};
+
+export const editEventSchedule = async (payload) => {
+  axios.defaults.withCredentials = true;
+  const response = await axios.post(editEventScheduleURI, {
     data: payload,
     headers: {
       "Content-Type": "application/json",

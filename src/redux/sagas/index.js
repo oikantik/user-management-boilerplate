@@ -13,6 +13,8 @@ import {
   watchGetEditEvent,
   watchEditEvent,
   watchGetEvents,
+  watchEditEventSchedule,
+  watchGetEditEventSchedule,
 } from "./events";
 import { watchGetPublicSchedule } from "./scheduler";
 
@@ -30,4 +32,6 @@ export default function* () {
   yield fork(watchEditEvent);
   yield fork(watchGetPublicSchedule);
   yield fork(watchGetEvents);
+  yield fork(watchEditEventSchedule);
+  yield fork(watchGetEditEventSchedule);
 }

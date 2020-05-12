@@ -10,17 +10,44 @@ import EditEventSchedulingForm from "./Schedule";
 import EditEventEmailsForm from "./Email";
 import EditEventPageForm from "./Page";
 
-import { getEditEvent, editEvent } from "../../../redux/actions/events";
+import {
+  getEditEventDetails,
+  editEventDetails,
+  editEventSchedule,
+  getEditEventSchedule,
+  cancelEditDetails,
+  cancelEditSchedule,
+} from "../../../redux/actions/events";
 
 const EditEvent = ({
   handleShowEditEvent,
   handleEditEvent,
   editorId,
+  handleEditEventSchedule,
   eventId,
   title,
   loading,
   description,
   updated,
+  updatedSchedule,
+  editingSchedule,
+  editingDetails,
+  startDate,
+  endDate,
+  timezone,
+  meetingLength,
+  spreadLength,
+  blackoutDate,
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+  sunday,
+  handleShowEditEventSchedule,
+  handleCancelEditSchedule,
+  handleCancelEditDetails,
 }) => {
   const getEditorId = useParams().editorId;
   const [showCreateSuccessAlert, setshowCreateSuccessAlert] = useState(
@@ -53,40 +80,48 @@ const EditEvent = ({
             handleEditEvent={handleEditEvent}
             loading={loading}
             updated={updated}
+            editingDetails={editingDetails}
+            handleCancelEditDetails={handleCancelEditDetails}
+          />
+
+          <EditEventSchedulingForm
+            editorId={getEditorId}
+            handleEditEventSchedule={handleEditEventSchedule}
+            loading={loading}
+            updatedSchedule={updatedSchedule}
+            startDate={startDate}
+            endDate={endDate}
+            timezone={timezone}
+            meetingLength={meetingLength}
+            spreadLength={spreadLength}
+            blackoutDate={blackoutDate}
+            monday={monday}
+            tuesday={tuesday}
+            wednesday={wednesday}
+            thursday={thursday}
+            friday={friday}
+            saturday={saturday}
+            sunday={sunday}
+            handleShowEditEventSchedule={handleShowEditEventSchedule}
+            editingSchedule={editingSchedule}
+            handleCancelEditSchedule={handleCancelEditSchedule}
           />
 
           <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
             <Card.Body>
-              <Card.Text>
-                {" "}
-                <EditEventTrackingForm />
-              </Card.Text>
+              <EditEventTrackingForm />
             </Card.Body>
           </Card>
 
           <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
             <Card.Body>
-              <Card.Text>
-                {" "}
-                <EditEventSchedulingForm />
-              </Card.Text>
+              <EditEventPageForm />
             </Card.Body>
           </Card>
 
           <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
             <Card.Body>
-              <Card.Text>
-                <EditEventPageForm />
-              </Card.Text>
-            </Card.Body>
-          </Card>
-
-          <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
-            <Card.Body>
-              <Card.Text>
-                {" "}
-                <EditEventEmailsForm />
-              </Card.Text>
+              <EditEventEmailsForm />
             </Card.Body>
           </Card>
         </Col>
@@ -104,11 +139,43 @@ const mapDispatchToProps = (dispatch) => {
         description: e.description,
         editorId: e.editorId,
       };
-      dispatch(editEvent(payload));
+      dispatch(editEventDetails(payload));
+      return false;
+    },
+
+    handleEditEventSchedule: (e) => {
+      console.log(e.blackoutDate);
+      const payload = {
+        startDate: e.startDate,
+        endDate: e.endDate,
+        timezone: e.timezone,
+        meetingLength: e.meetingLength,
+        spreadLength: e.spreadLength,
+        blackoutDate: e.blackoutDate.map((x) => x.defaultDate),
+        monday: e.avMonday,
+        tuesday: e.avTuesday,
+        wednesday: e.avWednesday,
+        thursday: e.avThursday,
+        friday: e.avFriday,
+        saturday: e.avSaturday,
+        sunday: e.avSunday,
+        editorId: e.editorId,
+      };
+      dispatch(editEventSchedule(payload));
       return false;
     },
     handleShowEditEvent: (editorId) => {
-      dispatch(getEditEvent(editorId));
+      dispatch(getEditEventDetails(editorId));
+    },
+
+    handleShowEditEventSchedule: (editorId) => {
+      dispatch(getEditEventSchedule(editorId));
+    },
+    handleCancelEditDetails: () => {
+      dispatch(cancelEditDetails());
+    },
+    handleCancelEditSchedule: () => {
+      dispatch(cancelEditSchedule());
     },
   };
 };
@@ -122,7 +189,23 @@ const mapStateToProps = (state) => {
     description: state.events.event.description,
     eventId: state.events.event.eventId,
     updated: state.events.event.updated,
+    updatedSchedule: state.events.event.updatedSchedule,
     loading: state.events.loading,
+    startDate: state.events.event.startDate,
+    endDate: state.events.event.endDate,
+    timezone: state.events.event.timezone,
+    meetingLength: state.events.event.meetingLength,
+    spreadLength: state.events.event.spreadLength,
+    blackoutDate: state.events.event.blackoutDate,
+    monday: state.events.event.monday,
+    tuesday: state.events.event.tuesday,
+    wednesday: state.events.event.wednesday,
+    thursday: state.events.event.thursday,
+    friday: state.events.event.friday,
+    saturday: state.events.event.saturday,
+    sunday: state.events.event.sunday,
+    editingSchedule: state.events.editingSchedule,
+    editingDetails: state.events.editingDetails,
   };
 };
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { Spinner } from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import { format as formatDate } from "date-fns";
+import { format as formatDate, addDays } from "date-fns";
 import { getPublicSchedule } from "../../redux/actions/schedule";
+import Calendar from "./Calendar";
 
 const SignupPage = ({
   match,
@@ -28,7 +28,7 @@ const SignupPage = ({
 }) => {
   const getEventId = match.params.eventId;
   const [startDateState, setStartDate] = useState();
-  const [availableTimes, setavailableTimes] = useState([]);
+  const [availableTimes, setavailableTimes] = useState(["No upcoming times"]);
   useEffect(() => {
     handleGetPublicScheduler(getEventId);
   }, [handleGetPublicScheduler, getEventId]);
@@ -50,7 +50,7 @@ const SignupPage = ({
       case "Sunday":
         return setavailableTimes(sunday);
       default:
-        return setavailableTimes();
+        return setavailableTimes(["No upcoming times"]);
     }
   };
 
@@ -59,14 +59,14 @@ const SignupPage = ({
       {loading && <Spinner animation="border" variant="primary" />}
       {!loading && (
         <Fragment>
-          <DatePicker
-            selected={startDateState}
-            onSelect={handleDateSelect}
-            minDate={new Date(startDate)}
-            maxDate={new Date(endDate)}
-            onChange={(date) => setStartDate(date)}
-            excludeDates={blackoutDate && blackoutDate.map((x) => new Date(x))}
-            inline
+          <Calendar
+            startDateState={startDateState}
+            handleDateSelect={handleDateSelect}
+            startDate={startDate}
+            endDate={endDate}
+            setStartDate={setStartDate}
+            addDays={addDays}
+            blackoutDate={blackoutDate}
           />
           The title of the scheduler is {title}
           <br />

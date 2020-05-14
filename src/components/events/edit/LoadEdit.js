@@ -144,7 +144,6 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     handleEditEventSchedule: (e) => {
-      console.log(e.blackoutDate);
       const payload = {
         startDate: e.startDate,
         endDate: e.endDate,

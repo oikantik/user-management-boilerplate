@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Form, Button, Card, Col, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import { subDays } from "date-fns";
+import { subDays, format as formatter, addDays } from "date-fns";
 import moment from "moment-timezone";
 import { v1 as uuidv1 } from "uuid";
 import update from "immutability-helper";
@@ -11,12 +11,33 @@ import * as Yup from "yup";
 
 import Availability from "./Availability";
 
-// const validationSchema = Yup.object({
-//   password: Yup.string().required("Please enter password field"),
-//   email: Yup.string()
-//     .required("Please enter your email address")
-//     .email("Please enter a valid email"),
-// });
+const validationSchema = Yup.object({
+  startDate: Yup.date().required(),
+  endDate: Yup.date()
+    .nullable()
+    .when(
+      "startDate",
+      (startDate, schema) =>
+        startDate &&
+        schema.min(startDate, "End date cannot be after start date")
+    ),
+  meetingLength: Yup.array().of(Yup.string()).required("Must select a value"),
+  spreadLength: Yup.string().oneOf(
+    ["15 minutes", "30 minutes", "60 minutes"],
+    "Must select a value"
+  ),
+  blackoutDate: Yup.array().test(
+    "no duplicate",
+    "Blackout date exists already",
+    (value) => {
+      const hasDuplicates = (array) => {
+        return new Set(array).size !== array.length;
+      };
+      const foo = value.map((x) => formatter(x.defaultDate, "MM-dd-yyyy"));
+      return !hasDuplicates(foo);
+    }
+  ),
+});
 
 const EditEventSchedulingForm = ({
   handleShowEditEventSchedule,
@@ -41,7 +62,7 @@ const EditEventSchedulingForm = ({
   updatedSchedule,
   handleCancelEditSchedule,
 }) => {
-  const [startDateState, setStartDate] = useState(null);
+  const [startDateState, setStartDate] = useState(new Date());
   const [endDateState, setEndDate] = useState(null);
   const [blackoutDates, setBlackoutDates] = useState({ data: [] });
   const timezones = moment.tz.names();
@@ -57,7 +78,6 @@ const EditEventSchedulingForm = ({
       });
   }, [startDate, endDate, blackoutDate]);
   const handleOnClickBlackoutDateAdd = () => {
-    console.log(blackoutDates);
     setBlackoutDates({
       data: [
         ...blackoutDates.data,
@@ -101,13 +121,14 @@ const EditEventSchedulingForm = ({
             <div>
               <Formik
                 onSubmit={handleEditEventSchedule}
+                validationSchema={validationSchema}
                 initialValues={{
                   editorId,
                   timezone: timezone ? timezone : "",
                   meetingLength,
                   spreadLength,
-                  startDate: new Date(startDate),
-                  endDate: new Date(endDate),
+                  startDate: startDate && new Date(startDate),
+                  endDate: endDate ? new Date(endDate) : addDays(new Date(), 2),
                   blackoutDate: blackoutDate.map((x, y) => ({
                     id: uuidv1(),
                     defaultDate: new Date(x),
@@ -177,6 +198,9 @@ const EditEventSchedulingForm = ({
                         dateFormat="MMMM d, yyyy h:mm aa"
                         value={values.startDate}
                       />
+                      <span className="validation-errors">
+                        {errors.startDate}
+                      </span>
                     </Form.Group>
 
                     <Form.Group>
@@ -201,6 +225,9 @@ const EditEventSchedulingForm = ({
                         isClearable
                         value={values.endDate}
                       />
+                      <span className="validation-errors">
+                        {errors.endDate}
+                      </span>
                     </Form.Group>
 
                     <Form.Group>
@@ -242,6 +269,9 @@ const EditEventSchedulingForm = ({
                           <Form.Label>60 minutes</Form.Label>
                         </Col>
                       </Row>
+                      <span className="validation-errors">
+                        {errors.meetingLength}
+                      </span>
                     </Form.Group>
 
                     <Form.Group>
@@ -283,6 +313,9 @@ const EditEventSchedulingForm = ({
                           <Form.Label>60 minutes</Form.Label>
                         </Col>
                       </Row>
+                      <span className="validation-errors">
+                        {errors.spreadLength}
+                      </span>
                     </Form.Group>
 
                     <Form.Group>
@@ -361,6 +394,9 @@ const EditEventSchedulingForm = ({
                           </Row>
                         </Fragment>
                       ))}
+                      <span className="validation-errors">
+                        {errors.blackoutDate}
+                      </span>
                       <Button
                         variant="link"
                         onClick={handleOnClickBlackoutDateAdd}

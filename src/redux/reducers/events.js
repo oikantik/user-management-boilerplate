@@ -127,6 +127,7 @@ export default (state = initialState, action) => {
         saturday,
         sunday,
       } = action.payload.event.availableDays;
+
       const {
         startDate,
         endDate,
@@ -135,6 +136,7 @@ export default (state = initialState, action) => {
         spreadLength,
         blackoutDate,
       } = action.payload.event;
+
       return {
         ...state,
         loading: false,
@@ -147,7 +149,10 @@ export default (state = initialState, action) => {
           timezone,
           meetingLength,
           spreadLength,
-          blackoutDate,
+          blackoutDate:
+            typeof blackoutDate === "object"
+              ? blackoutDate.sort((a, b) => new Date(a) - new Date(b))
+              : blackoutDate,
           monday,
           tuesday,
           wednesday,
@@ -230,7 +235,6 @@ export default (state = initialState, action) => {
         loading: true,
       };
     case types.GET_ALL_EVENTS_SUCCESSFUL: {
-      console.log(action.payload);
       return {
         ...state,
         loading: false,

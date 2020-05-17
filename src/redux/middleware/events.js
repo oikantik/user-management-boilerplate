@@ -6,6 +6,8 @@ import {
   getAllEventsURI,
   editEventScheduleURI,
   getEditEventScheduleURI,
+  getEditEventFormFieldsURI,
+  editEventFormFieldsURI,
 } from "../../config/default.json";
 
 export const createEvent = async (payload) => {
@@ -71,6 +73,36 @@ export const getEditEventSchedule = async (payload) => {
 export const editEventSchedule = async (payload) => {
   axios.defaults.withCredentials = true;
   const response = await axios.post(editEventScheduleURI, {
+    data: payload,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return {
+    success: response.data.success,
+    message: response.data.message,
+    event: response.data.event,
+  };
+};
+
+export const getEditEventFormFields = async (payload) => {
+  axios.defaults.withCredentials = true;
+  const response = await axios.post(getEditEventFormFieldsURI, {
+    data: { editorId: payload },
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return {
+    success: response.data.success,
+    message: response.data.message,
+    event: response.data.event,
+  };
+};
+
+export const editEventFormFields = async (payload) => {
+  axios.defaults.withCredentials = true;
+  const response = await axios.post(editEventFormFieldsURI, {
     data: payload,
     headers: {
       "Content-Type": "application/json",

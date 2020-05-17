@@ -7,6 +7,8 @@ import {
   getEvents,
   editEventSchedule,
   getEditEventSchedule,
+  getEditEventFormFields,
+  editEventFormFields,
 } from "../middleware/events";
 
 function* createTheEvent(action) {
@@ -54,6 +56,21 @@ function* editTheEventSchedule(action) {
   }
 }
 
+function* editTheEventFormFields(action) {
+  try {
+    const payload = yield call(editEventFormFields, action.payload);
+    yield put({
+      type: types.EDIT_EVENT_FORM_FIELDS_SUCCESSFUL,
+      payload,
+    });
+  } catch (err) {
+    yield put({
+      type: types.EDIT_EVENT_FORM_FIELDS_FAILURE,
+      paylod: err.response.data,
+    });
+  }
+}
+
 function* getEditTheEvent(action) {
   try {
     const payload = yield call(getEditEventDetails, action.payload);
@@ -74,6 +91,21 @@ function* getEditTheEventSchedule(action) {
     const payload = yield call(getEditEventSchedule, action.payload);
     yield put({
       type: types.GET_EDIT_EVENT_SCHEDULE_SUCCESSFUL,
+      payload,
+    });
+  } catch (err) {
+    yield put({
+      type: types.GET_EDIT_EVENT_SCHEDULE_FAILURE,
+      paylod: err.response.data,
+    });
+  }
+}
+
+function* getEditTheEventFormFields(action) {
+  try {
+    const payload = yield call(getEditEventFormFields, action.payload);
+    yield put({
+      type: types.GET_EDIT_EVENT_FORM_FIELDS_SUCCESSFUL,
       payload,
     });
   } catch (err) {
@@ -113,8 +145,15 @@ export function* watchEditEvent() {
 export function* watchEditEventSchedule() {
   yield takeLatest(types.EDIT_EVENT_SCHEDULE, editTheEventSchedule);
 }
+export function* watchEditEventFormFields() {
+  yield takeLatest(types.EDIT_EVENT_FORM_FIELDS, editTheEventFormFields);
+}
 export function* watchGetEditEventSchedule() {
   yield takeLatest(types.GET_EDIT_EVENT_SCHEDULE, getEditTheEventSchedule);
+}
+
+export function* watchGetEditEventFormFields() {
+  yield takeLatest(types.GET_EDIT_EVENT_FORM_FIELDS, getEditTheEventFormFields);
 }
 
 export function* watchGetEvents() {

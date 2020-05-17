@@ -20,6 +20,7 @@ const initialState = {
     friday: "",
     saturday: "",
     sunday: "",
+    formFields: [],
   },
   error: "",
 };
@@ -49,7 +50,10 @@ export default (state = initialState, action) => {
         friday,
         saturday,
         sunday,
+        formFields,
       } = action.payload.event;
+      const newFormFieldsArray = Object.values(formFields);
+
       return {
         ...state,
         loading: false,
@@ -71,6 +75,7 @@ export default (state = initialState, action) => {
           friday,
           saturday,
           sunday,
+          formFields: newFormFieldsArray,
         },
       };
     }

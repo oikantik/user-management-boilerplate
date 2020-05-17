@@ -10,6 +10,8 @@
   "createEventURI": "http://localhost:5000/events/create",
   "getEditEventDetailsURI": "http://localhost:5000/events/get-one/details",
   "getEditEventScheduleURI": "http://localhost:5000/events/get-one/schedule",
+  "getEditEventFormFieldsURI": "http://localhost:5000/events/get-one/form-fields",
+  "editEventFormFieldsURI": "http://localhost:5000/events/update/form-fields",
   "editEventDetailsURI": "http://localhost:5000/events/update/details",
   "getAllEventsURI": "http://localhost:5000/events",
   "getPublicSchedulerURI": "http://localhost:5000/public/schedule",

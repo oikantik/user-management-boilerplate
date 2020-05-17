@@ -4,6 +4,7 @@ import { Spinner } from "react-bootstrap";
 import { format as formatDate, addDays } from "date-fns";
 import { getPublicSchedule } from "../../redux/actions/schedule";
 import Calendar from "./Calendar";
+import ShowForm from "./Form";
 
 const SignupPage = ({
   match,
@@ -17,6 +18,7 @@ const SignupPage = ({
   timezone,
   meetingLength,
   spreadLength,
+  formFields,
   blackoutDate,
   monday,
   tuesday,
@@ -76,6 +78,7 @@ const SignupPage = ({
               <li key={index}>{time}</li>
             ))}
           </ul>
+          <ShowForm formFields={formFields} />
         </Fragment>
       )}
     </Fragment>
@@ -111,6 +114,7 @@ const mapStateToProps = (state) => {
     friday: state.publicScheduler.event.friday,
     saturday: state.publicScheduler.event.saturday,
     sunday: state.publicScheduler.event.sunday,
+    formFields: state.publicScheduler.event.formFields,
   };
 };
 

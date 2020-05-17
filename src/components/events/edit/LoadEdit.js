@@ -1,13 +1,11 @@
 import React, { Fragment, useState } from "react";
-import { Col, Row, Card, Alert } from "react-bootstrap";
+import { Col, Row, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import queryString from "query-string";
 
 import EditEventDetailsForm from "./Details";
-import EditEventTrackingForm from "./Tracking";
 import EditEventSchedulingForm from "./Schedule";
-import EditEventEmailsForm from "./Email";
 import EditEventPageForm from "./Page";
 
 import {
@@ -15,8 +13,11 @@ import {
   editEventDetails,
   editEventSchedule,
   getEditEventSchedule,
+  getEditEventFormFields,
   cancelEditDetails,
   cancelEditSchedule,
+  cancelEditFormFields,
+  editFormFields,
 } from "../../../redux/actions/events";
 
 const EditEvent = ({
@@ -48,6 +49,12 @@ const EditEvent = ({
   handleShowEditEventSchedule,
   handleCancelEditSchedule,
   handleCancelEditDetails,
+  handleShowEditEventFormFields,
+  handleCancelEditFormFields,
+  handleEditEventFormFields,
+  editingFormFields,
+  formFields,
+  updatedFormFields,
 }) => {
   const getEditorId = useParams().editorId;
   const [showCreateSuccessAlert, setshowCreateSuccessAlert] = useState(
@@ -107,23 +114,16 @@ const EditEvent = ({
             handleCancelEditSchedule={handleCancelEditSchedule}
           />
 
-          <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
-            <Card.Body>
-              <EditEventTrackingForm />
-            </Card.Body>
-          </Card>
-
-          <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
-            <Card.Body>
-              <EditEventPageForm />
-            </Card.Body>
-          </Card>
-
-          <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
-            <Card.Body>
-              <EditEventEmailsForm />
-            </Card.Body>
-          </Card>
+          <EditEventPageForm
+            editorId={getEditorId}
+            loading={loading}
+            handleShowEditEventFormFields={handleShowEditEventFormFields}
+            editingFormFields={editingFormFields}
+            handleCancelEditFormFields={handleCancelEditFormFields}
+            updated={updatedFormFields}
+            formFields={formFields}
+            handleEditEventFormFields={handleEditEventFormFields}
+          />
         </Col>
       </Row>
     </Fragment>
@@ -140,6 +140,43 @@ const mapDispatchToProps = (dispatch) => {
         editorId: e.editorId,
       };
       dispatch(editEventDetails(payload));
+      return false;
+    },
+
+    handleEditEventFormFields: (e) => {
+      const payload = {
+        editorId: e.editorId,
+        name: {
+          label: e.cusNameLabel,
+          isRequired: e.cusNameRequired,
+          isShown: e.cusNameShow,
+          fieldName: "name",
+          fieldType: "text",
+        },
+        email: {
+          label: e.cusEmailLabel,
+          isRequired: e.cusEmailRequired,
+          isShown: e.cusEmailShow,
+          fieldName: "email",
+          fieldType: "email",
+        },
+        note: {
+          label: e.cusNoteLabel,
+          isRequired: e.cusNoteRequired,
+          isShown: e.cusNoteShow,
+          fieldName: "name",
+          fieldType: "text",
+        },
+        phone: {
+          label: e.cusPhoneLabel,
+          isRequired: e.cusPhoneRequired,
+          isShown: e.cusPhoneShow,
+          fieldName: "name",
+          fieldType: "text",
+        },
+      };
+      console.log(payload);
+      dispatch(editFormFields(payload));
       return false;
     },
 
@@ -170,11 +207,18 @@ const mapDispatchToProps = (dispatch) => {
     handleShowEditEventSchedule: (editorId) => {
       dispatch(getEditEventSchedule(editorId));
     },
+
+    handleShowEditEventFormFields: (editorId) => {
+      dispatch(getEditEventFormFields(editorId));
+    },
     handleCancelEditDetails: () => {
       dispatch(cancelEditDetails());
     },
     handleCancelEditSchedule: () => {
       dispatch(cancelEditSchedule());
+    },
+    handleCancelEditFormFields: () => {
+      dispatch(cancelEditFormFields());
     },
   };
 };
@@ -205,6 +249,9 @@ const mapStateToProps = (state) => {
     sunday: state.events.event.sunday,
     editingSchedule: state.events.editingSchedule,
     editingDetails: state.events.editingDetails,
+    editingFormFields: state.events.editingFormFields,
+    formFields: state.events.event.formFields,
+    updatedFormFields: state.events.event.updatedFormFields,
   };
 };
 

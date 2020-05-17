@@ -35,9 +35,23 @@ export const editEventSchedule = (payload) => {
   };
 };
 
+export const editFormFields = (payload) => {
+  return {
+    type: types.EDIT_EVENT_FORM_FIELDS,
+    payload: payload,
+  };
+};
+
 export const getEvents = () => {
   return {
     type: types.GET_ALL_EVENTS,
+  };
+};
+
+export const getEditEventFormFields = (payload) => {
+  return {
+    type: types.GET_EDIT_EVENT_FORM_FIELDS,
+    payload: payload,
   };
 };
 
@@ -50,5 +64,11 @@ export const cancelEditSchedule = () => {
 export const cancelEditDetails = () => {
   return {
     type: types.CANCEL_EDIT_EVENT_DETAILS,
+  };
+};
+
+export const cancelEditFormFields = () => {
+  return {
+    type: types.CANCEL_EDIT_EVENT_FORM_FIELDS,
   };
 };

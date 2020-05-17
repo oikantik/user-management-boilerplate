@@ -11,9 +11,11 @@ const initialState = {
     editorId: "",
     updated: false,
     updatedSchedule: false,
+    updatedFormFields: false,
   },
   editingSchedule: false,
   editingDetails: false,
+  editingFormFields: false,
   error: "",
 };
 
@@ -53,6 +55,8 @@ export default (state = initialState, action) => {
         loading: true,
         editingSchedule: false,
         editingDetails: false,
+
+        editingFormFields: false,
       };
     case types.GET_EDIT_EVENT_DETAILS_SUCCESSFUL: {
       const { title, description, eventId, editorId } = action.payload.event;
@@ -116,6 +120,8 @@ export default (state = initialState, action) => {
         loading: true,
         editingSchedule: false,
         editingDetails: false,
+
+        editingFormFields: false,
       };
     case types.GET_EDIT_EVENT_SCHEDULE_SUCCESSFUL: {
       const {
@@ -228,6 +234,61 @@ export default (state = initialState, action) => {
         event: { updatedSchedule: false },
       };
 
+    /* get edit event form fields */
+    case types.GET_EDIT_EVENT_FORM_FIELDS:
+      return {
+        ...state,
+        loading: true,
+        editingSchedule: false,
+        editingDetails: false,
+      };
+
+    case types.GET_EDIT_EVENT_FORM_FIELDS_SUCCESSFUL: {
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        editingSchedule: false,
+        editingDetails: false,
+        editingFormFields: true,
+        event: { formFields: action.payload.event.formFields },
+      };
+    }
+    case types.GET_EDIT_EVENT_FORM_FIELDS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload.message,
+      };
+
+    /*  edit event form fields */
+
+    case types.EDIT_EVENT_FORM_FIELDS:
+      return {
+        ...state,
+        loading: true,
+        event: { updatedFormFields: false },
+      };
+    case types.EDIT_EVENT_FORM_FIELDS_SUCCESSFUL: {
+      const { formFields } = action.payload.event;
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        editingFormFields: false,
+        event: { formFields, updatedFormFields: true },
+      };
+    }
+    case types.EDIT_EVENT_FORM_FIELDS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload.message,
+        event: { updatedFormFields: false },
+      };
+
     /* Get all the events */
     case types.GET_ALL_EVENTS:
       return {
@@ -265,6 +326,13 @@ export default (state = initialState, action) => {
         editingDetails: false,
         updated: false,
       };
+    case types.CANCEL_EDIT_EVENT_FORM_FIELDS:
+      return {
+        ...state,
+        editingFormFields: false,
+        updated: false,
+      };
+
     default:
       return state;
   }

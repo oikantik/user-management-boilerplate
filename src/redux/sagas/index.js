@@ -15,6 +15,8 @@ import {
   watchGetEvents,
   watchEditEventSchedule,
   watchGetEditEventSchedule,
+  watchGetEditEventFormFields,
+  watchEditEventFormFields,
 } from "./events";
 import { watchGetPublicSchedule } from "./scheduler";
 
@@ -34,4 +36,6 @@ export default function* () {
   yield fork(watchGetEvents);
   yield fork(watchEditEventSchedule);
   yield fork(watchGetEditEventSchedule);
+  yield fork(watchGetEditEventFormFields);
+  yield fork(watchEditEventFormFields);
 }

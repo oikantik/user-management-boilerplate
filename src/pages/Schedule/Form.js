@@ -7,10 +7,8 @@ const ShowForm = ({ formFields }) => {
         {formFields &&
           formFields.map((x, y) => (
             <Fragment key={y}>
-              {console.log(x.label)}
               {x.isShown && (
                 <Form.Group>
-                  {console.log(x)}
                   <Form.Label>{x.label}</Form.Label>
                   <Form.Control
                     type={x.fieldType}

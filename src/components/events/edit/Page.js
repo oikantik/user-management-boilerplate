@@ -79,8 +79,6 @@ const EditEventPageForm = ({
   };
   return (
     <Fragment>
-      {" "}
-      {console.log(updated)}
       <Card style={{ marginTop: "20px", marginBottom: "20px" }}>
         <Card.Body>
           <Card.Title>
